@@ -64,7 +64,7 @@ class AdminController extends AbstractActionController
     }    
     
     /**
-     * Create action
+     * Create user action
      *
      * Method to create an user
      *
@@ -80,10 +80,9 @@ class AdminController extends AbstractActionController
             $user = new User;
             
             $form = $this->getUserFormHelper()->createUserForm($user, 'CreateUser');
-            $request = $this->getRequest();
-            if ($request->isPost()) {
+            if ($this->getRequest()->isPost()) {
                 $form->setValidationGroup('username', 'email', 'firstName', 'lastName', 'password', 'passwordVerify', 'language', 'state', 'role', 'question', 'answer', 'csrf');
-                $form->setData($request->getPost());
+                $form->setData($this->getRequest()->getPost());
                 if ($form->isValid()) {
                     $entityManager = $this->getEntityManager();
                     $user->setEmailConfirmed(false);
@@ -112,7 +111,7 @@ class AdminController extends AbstractActionController
     }
 
     /**
-     * Edit action
+     * Edit user action
      *
      * Method to update an user
      *
@@ -140,11 +139,10 @@ class AdminController extends AbstractActionController
             $form->setAttributes(array(
                 'action' => $this->url()->fromRoute('user-admin', array('action' => 'edit-user', 'id' => $id)),
             ));
-              	
-            $request = $this->getRequest();
-            if ($request->isPost()) {
+
+            if ($this->getRequest()->isPost()) {
                 $form->setValidationGroup('username', 'email', 'firstName', 'lastName', 'language', 'state', 'role', 'question', 'answer', 'csrf');
-                $form->setData($request->getPost());
+                $form->setData($this->getRequest()->getPost());
                 if ($form->isValid()) {
                     $entityManager->persist($user);
                     $entityManager->flush();
@@ -164,14 +162,13 @@ class AdminController extends AbstractActionController
         
         $viewModel = new ViewModel(array(
             'form' => $form,
-            'headerLabel' => $this->getTranslatorHelper()->translate('Edit User').' - '.$user->getDisplayName(),
         ));
         $viewModel->setTemplate('csn-user/admin/edit-user-form');
         return $viewModel;
     }
 
     /**
-     * Delete action
+     * Delete user action
      *
      * Method to delete an user from his ID
      *
@@ -210,7 +207,7 @@ class AdminController extends AbstractActionController
     }
     
     /**
-     * Disable action
+     * Disable user action
      *
      * Method to disable an user from his ID
      *

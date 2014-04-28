@@ -32,6 +32,11 @@
             "email":     "st.revov@gmail.com",
             "role":      "Developer"
         }
+        {
+            "name":      "Martin Briglia",
+            "email":     "martin@mgscreativa.com",
+            "role":      "Developer"
+        }
     ],
     "minimum-stability": "dev",
     "require": {

@@ -17,10 +17,10 @@ namespace CsnUser\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Questions
+ * Doctrine ORM implementation of Question entity
  *
- * @ORM\Table(name="question")
  * @ORM\Entity
+ * @ORM\Table(name="`question`")
  */
 class Question
 {

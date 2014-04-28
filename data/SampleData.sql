@@ -14,10 +14,10 @@ INSERT INTO `language` (`id`, `name`, `abbreviation`) VALUES
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'Guest'),
-(2, 'Member'),
-(3, 'Admin');
+INSERT INTO `role` (`id`, `name`, `description`) VALUES
+(1, 'Guest', 'Gest role for not logged users'),
+(2, 'Member', 'Member role for logged in users'),
+(3, 'Admin', 'Admin role for Administrator users');
 
 --
 -- Dumping data for table `roles_parents`
@@ -38,9 +38,17 @@ INSERT INTO `question` (`id`, `question`) VALUES
 (4, 'In what city or town was your first job?');
 
 --
--- Dumping data for table `questions`
+-- Dumping data for table `state`
 --
 
 INSERT INTO `state` (`id`, `state`) VALUES
 (1, 'Disabled'),
 (2, 'Enabled');
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `role_id`, `language_id`, `state_id`, `question_id`, `username`, `first_name`, `last_name`, `email`, `password`, `answer`, `picture`, `registration_date`, `registration_token`, `email_confirmed`) VALUES
+(1, 3, 1, 2, 1, 'administrator', 'Admin', 'Istrator', 'admin@istrator.com', '$2y$10$GUKeGz/rLU74nVN85c5OveH02Ymiq7gxxYoNbU6anwbjG/gzW2z8W', 'who knows', NULL, NULL, NULL, 1);
+

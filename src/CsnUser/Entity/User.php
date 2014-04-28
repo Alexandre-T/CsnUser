@@ -34,7 +34,7 @@ class User
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @Annotation\Exclude()
@@ -237,12 +237,12 @@ class User
     protected $emailConfirmed;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @ORM\ManyToMany(targetEntity="CsnUser\Entity\User", mappedBy="myFriends")
      **/
     protected $friendsWithMe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+     * @ORM\ManyToMany(targetEntity="CsnUser\Entity\User", inversedBy="friendsWithMe")
      * @ORM\JoinTable(name="friends",
      *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="friend_id", referencedColumnName="id")}

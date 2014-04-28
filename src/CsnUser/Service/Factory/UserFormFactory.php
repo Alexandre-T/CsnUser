@@ -52,7 +52,7 @@ class UserFormFactory implements FactoryInterface
     protected $translatorHelper;
     
     /**
-     * @var Zend\Mvc\I18n\Translator
+     * @var Zend\Mvc\Controller\Plugin\Url
      */
     protected $url;
     
@@ -142,7 +142,7 @@ class UserFormFactory implements FactoryInterface
               
           case 'EditUser':
               $this->form->setAttributes(array(
-                  'name' => 'register'
+                  'name' => 'edit-user'
               ));
               break;
               

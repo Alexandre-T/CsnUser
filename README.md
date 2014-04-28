@@ -110,4 +110,7 @@ Recommends
  
 - [coolcsn/CsnCms](https://github.com/coolcsn/CsnCms) - Content management system;
 
+Known Issues
+------------
+- **ZendDeveloperTools:** Enabling *ZendDeveloperTools* module makes Doctrine ORM Annotation Builder fail. You can enable ZendDeveloperTools, but for annotated form creation test, you need to disable it first or annotated forms will not render at all.
 
