@@ -85,7 +85,7 @@ The following routes are available:
 - **user** Welcome view.
 - **user/login** User login view.
 - **user/register** User register view.
-- **user/register/reset-password** User resep password view.
+- **user/register/reset-password** User reset password view.
 - **user/register/edit-profile** User edit profile view.
 - **user/register/change-password** User change password view.
 - **user/register/change-email** User change email view.
