@@ -173,7 +173,7 @@ class UserFormFactory implements FactoryInterface
             'type' => 'Zend\Form\Element\Csrf',
             'options' => array(
                 'csrf_options' => array(
-                    'timeout' => 600
+                    'timeout' => 600,
                 )
             )
         ));

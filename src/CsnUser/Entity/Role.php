@@ -16,7 +16,6 @@ namespace CsnUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Doctrine ORM implementation of Role entity
@@ -38,7 +37,7 @@ class Role
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=15, nullable=false)
+     * @ORM\Column(name="name", type="string", length=30, nullable=false, unique=true)
      */
     protected $name;
     
@@ -50,19 +49,19 @@ class Role
     protected $roleDescription;
 
     /**
-     * @var Role
-     * 
-     * @ORM\ManyToMany(targetEntity="CsnUser\Entity\Role", cascade={"persist"})
-     * @ORM\JoinTable(name="roles_parents",
-     *      joinColumns={@ ORM\JoinColumn(name="role_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ ORM\JoinColumn(name="parent_id", referencedColumnName="id")}
-     *      )
+     * @var Privilege
+     * @ORM\OneToMany(targetEntity="CsnAuthorization\Entity\Privilege", mappedBy="role", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $parents;
+    protected $privilege;
     
+    /**
+     * Construct
+     * 
+     * Construct some referenced columns arrays
+     */
     public function __construct()
     {
-        $this->parents = new ArrayCollection;
+        $this->privilege = new ArrayCollection;
     }
     
     /**
@@ -122,26 +121,25 @@ class Role
     }
     
     /**
-     * Set parents
+     * Set privilege
      *
-     * @param  $parents
+     * @param  $privilege
      * @return Role
      */
-    public function setParents($parents)
+    public function setPrivilege($privilege)
     {
-        $this->parents = $parents;
+        $this->privilege = $privilege;
 
         return $this;
     }
-
+    
     /**
-     * Get parents
+     * Get privilege
      *
      * @return Array
      */
-    public function getParents()
+    public function getPrivilege()
     {
-        return $this->parents;
+        return $this->privilege;
     }
-
 }

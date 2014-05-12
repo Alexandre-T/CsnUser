@@ -14,11 +14,10 @@
 
 namespace CsnUser\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Zend\Form\Annotation;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Doctrine ORM implementation of User entity
@@ -238,6 +237,7 @@ class User
 
     /**
      * @ORM\ManyToMany(targetEntity="CsnUser\Entity\User", mappedBy="myFriends")
+     * @Annotation\Exclude()
      **/
     protected $friendsWithMe;
 
