@@ -53,13 +53,13 @@ $flashMessenger = $this->flashMessenger()
       ?>
       <tr>
         <td><?php  echo $user->getId(); ?></td>
-        <td>
+        <td class="name-column">
           <a class="name" href="<?php echo $this->url('user-admin', array('action' => 'edit-user', 'id' => $user->getId())); ?>">
             <?php echo $user->getFirstName() . ' ' . $user->getLastName() ?>
           </a>
           <span class="subtext">(<?php echo $user->getRole()->getName()?>)</span>
         </td>
-        <td><?php  echo $user->getEmail(); ?></td>
+        <td class="email-column"><?php  echo $user->getEmail(); ?></td>
         <td>
           <?php echo $this->translate($user->getState()->getState()) ?>
         </td> 

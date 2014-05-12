@@ -20,6 +20,11 @@ table.users-list td,
 table.users-list th {
    text-align: center;   
 }
+
+table.users-list td.name-column,
+table.users-list td.email-column {
+	text-align: left;
+}
     
 table.users-list a.name {
   color: #3389D1;
