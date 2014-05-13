@@ -55,7 +55,7 @@ CsnUser requires setting up a Connection for Doctrine, a simple Mail configurati
 
 Default User
 ------------
-CsnUser by default provides you with an admin user for you to test. Login woth this user using `administrator` as the username and `superadmin` as the password.
+CsnUser by default provides you with an admin user for you to test. Login with this user using `administrator` as the username and `superadmin` as the password.
 
 Options
 -------
