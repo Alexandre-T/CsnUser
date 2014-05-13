@@ -171,7 +171,7 @@ class IndexController extends AbstractActionController
         $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if ($auth->hasIdentity()) {
             $auth->clearIdentity();
-            $sessionManager = new SessionManager();
+            $sessionManager = $this->getServiceLocator()->get('Zend\Session\SessionManager');
             $sessionManager->forgetMe();
         }
 
