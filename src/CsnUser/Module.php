@@ -14,8 +14,32 @@
 
 namespace CsnUser;
 
+use Zend\Session\Container;
+use Zend\Session\SessionManager;
+use Zend\Session\Config\SessionConfig;
+use Zend\EventManager\EventInterface;
+
 class Module
 {
+    /*public function onBootstrap(EventInterface $event)
+    {
+        $serviceManager = $event->getApplication()->getServiceManager();
+        $sessionLifeTime = $serviceManager->get('csnuser_module_options')->getSessionLifeTime();
+        $host = $serviceManager->get('Request')->getUri()->getHost();
+        
+        $sessionConfig = new SessionConfig();
+        $sessionConfig->setOptions(array(
+            'cookie_httponly' => true,
+            'cookie_domain' => $host,
+            'gc_maxlifetime' => 60*$sessionLifeTime,
+            'remember_me_seconds' => 60*$sessionLifeTime,
+        ));
+        
+        $sessionManager = new SessionManager($sessionConfig);
+        $sessionManager->start();
+        Container::setDefaultManager($sessionManager);
+    }*/
+
     public function getConfig()
     {
         return include __DIR__ . '/../../config/module.config.php';

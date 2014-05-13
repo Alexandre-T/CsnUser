@@ -16,8 +16,6 @@ namespace CsnUser\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Zend\Session\SessionManager;
-use Zend\Session\Config\StandardConfig;
 
 use CsnUser\Entity\User;
 use CsnUser\Options\ModuleOptions;
@@ -75,7 +73,7 @@ class IndexController extends AbstractActionController
         $user = new User;
         $form = $this->getUserFormHelper()->createUserForm($user, 'login');
         $messages = null;
-        if ($this->getRequest()->isPost()) {
+        if($this->getRequest()->isPost()) {
             $form->setValidationGroup('usernameOrEmail', 'password', 'rememberme', 'csrf', 'captcha');
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
@@ -117,11 +115,21 @@ class IndexController extends AbstractActionController
                         $authService->getStorage()->write($identity);
                         
                         if ($this->params()->fromPost('rememberme')) {
-                            $time = 1209600; // 14 days (1209600/3600 = 336 hours => 336/24 = 14 days)
-                            $sessionManager = new SessionManager();
-                            $sessionManager->rememberMe($time);
+                            $useCookies = true;
+                            $cookieLifeTime = 14*24*60*60;
+                        } else {
+                            $useCookies = false;
+                            $cookieLifeTime = 0;
                         }
+                        
+                        $sessionLifeTime = $this->getOptions()->getSessionLifeTime();
+                        $sessionManager = $this->getServiceLocator()->get('Zend\Session\SessionManager');
 
+                        $sessionManager->getConfig()->setUseCookies($useCookies);
+                        $sessionManager->getConfig()->setCookieHttpOnly(true);
+                        $sessionManager->getConfig()->setCookieDomain($this->getRequest()->getUri()->getHost());
+                        $sessionManager->rememberMe(60*$sessionLifeTime);
+                        
                         return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
                     }
                     
@@ -156,6 +164,10 @@ class IndexController extends AbstractActionController
      */
     public function logoutAction()
     {
+        if (!$user = $this->identity()) {
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+        }
+        
         $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if ($auth->hasIdentity()) {
             $auth->clearIdentity();

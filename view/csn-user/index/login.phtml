@@ -37,8 +37,12 @@ $form->get('password')->setAttributes(array(
 ));
 
 $form->get('rememberme')->setAttributes(array(
-    //'class' => 'form-control input-lg', 
+    'title' => $this->translate('Activate Remember Me Function'), 
 ));
+
+$form->get('rememberme')->setOptions(array(
+    'label' => $this->translate('Remember me?'),
+));        
 
 $form->get('captcha')->setAttributes(array(
     'required' => 'true',

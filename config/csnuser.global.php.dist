@@ -67,7 +67,16 @@ return array(
          * Accepted values: int
          */
          'captcha_char_num' => 3,
-        
+         
+         /**
+          * Set max idle user time in minutes, used to logout user in case of
+          * inactivity. Dont set it too high!
+          *
+          * Default value: 15
+          * Accepted values: int
+          */
+         'session_life_time' => 15,
+
         /**
          * Visibility of exception details
          *

@@ -43,5 +43,5 @@ INSERT INTO `state` (`id`, `state`) VALUES
 --
 
 INSERT INTO `user` (`id`, `role_id`, `language_id`, `state_id`, `question_id`, `username`, `first_name`, `last_name`, `email`, `password`, `answer`, `picture`, `registration_date`, `registration_token`, `email_confirmed`) VALUES
-(1, 4, 1, 2, 1, 'administrator', 'Admin', 'Istrator', 'admin@istrator.com', '$2y$10$GUKeGz/rLU74nVN85c5OveH02Ymiq7gxxYoNbU6anwbjG/gzW2z8W', 'who knows', NULL, NULL, NULL, 1);
+(1, 4, 1, 2, 3, 'administrator', 'Admin', 'Istrator', 'admin@istrator.com', '$2y$10$GUKeGz/rLU74nVN85c5OveH02Ymiq7gxxYoNbU6anwbjG/gzW2z8W', 'who knows', NULL, NULL, NULL, 1);
 

@@ -216,7 +216,9 @@ class UserFormFactory implements FactoryInterface
             'name' => 'rememberme',
             'type' => 'Zend\Form\Element\Checkbox',
             'options' => array(
-                'label' => $this->getTranslatorHelper()->translate('Remember me?'),
+                'use_hidden_element' => true,
+                'checked_value' => '1',
+                'unchecked_value' => '0'
             ),            
         ));
     }
@@ -352,10 +354,10 @@ class UserFormFactory implements FactoryInterface
             ),
             'validators' => array(
                 array(
-                    'name' => 'InArray',
+                    'name' => 'Regex',
                     'options' => array(
-                        'haystack' => array('0', '1'),
-                     ),
+                        'pattern' => '/^[0-1]{1}$/',
+                    ),
                 ),
             )
         )));

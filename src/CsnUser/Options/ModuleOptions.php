@@ -44,17 +44,20 @@ class ModuleOptions extends AbstractOptions
     protected $navMenu = true;
     
     /**
+     * @var int
+     */
+    protected $captchaCharNum = 3;
+    
+    /**
+     * @var int
+     */
+    protected $sessionLifeTime = 15;
+
+    /**
      * @var bool
      */
     protected $displayExceptions = true;
     
-    protected $captchaCharNum = 3;
-    
-    /**
-     * @var string
-     */
-    protected $authenticationService = 'doctrine.authenticationservice.orm_default';
-
     /**
      * set login redirect route
      *
@@ -148,6 +151,51 @@ class ModuleOptions extends AbstractOptions
     }
 
     /**
+     * set captcha number of characters
+     *
+     * @return int
+     */
+    public function setCaptchaCharNum($captchaCharNum)
+    {
+        $this->captchaCharNum = $captchaCharNum;
+    
+        return $this->captchaCharNum;
+    }
+    
+    /**
+     * get captcha number of characters
+     *
+     * @return int
+     */
+    public function getCaptchaCharNum()
+    {
+        return $this->captchaCharNum;
+    }
+    
+    /**
+     * set session life time
+     *
+     * @param  bool $sessionLifeTime
+     * @return ModuleOptions
+     */
+    public function setSessionLifeTime($sessionLifeTime)
+    {
+        $this->displayExceptions = $sessionLifeTime;
+    
+        return $this;
+    }
+    
+    /**
+     * get session life time
+     *
+     * @return int
+     */
+    public function getSessionLifeTime()
+    {
+        return $this->sessionLifeTime;
+    }
+    
+    /**
      * set display exceptions
      *
      * @param  bool        $displayExceptions
@@ -169,51 +217,4 @@ class ModuleOptions extends AbstractOptions
     {
         return $this->displayExceptions;
     }
-    
-    /**
-     * set captcha number of characters
-     *
-     * @return int
-     */
-    public function setCaptchaCharNum($captchaCharNum)
-    {
-        $this->captchaCharNum = $captchaCharNum;
-        
-        return $this->captchaCharNum;
-    }
-    
-    /**
-     * get captcha number of characters
-     *
-     * @return int
-     */
-    public function getCaptchaCharNum()
-    {
-        return $this->captchaCharNum;
-    }
-    
-    
-    /**
-     * set authentication service from config file
-     *
-     * @param  bool        $authenticationService
-     * @return ModuleOptions
-     */
-    public function setAuthenticationService($authenticationService)
-    {
-      $this->authenticationService = $authenticationService;
-    
-      return $this;
-    }
-    
-    /**
-     * get authentication service from config file
-     *
-     * @return string
-     */
-    public function getAuthenticationService()
-    {
-      return $this->authenticationService;
-    }
-        
 }

@@ -78,6 +78,7 @@ return array(
     'service_manager' => array (
         'factories' => array(
             'Zend\Authentication\AuthenticationService' => 'CsnUser\Service\Factory\AuthenticationFactory',
+            'Zend\Session\SessionManager' => 'Zend\Session\Service\SessionManagerFactory',
             'mail.transport' => 'CsnUser\Service\Factory\MailTransportFactory',
             'csnuser_module_options' => 'CsnUser\Service\Factory\ModuleOptionsFactory',
             'csnuser_error_view' => 'CsnUser\Service\Factory\ErrorViewFactory',
