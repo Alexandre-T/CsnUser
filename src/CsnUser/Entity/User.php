@@ -123,7 +123,7 @@ class User
      * @Annotation\Required(true)
      * @Annotation\Options({
      *   "required":"true",
-     *   "empty_option": "User Role",
+     *   "empty_option": "Select User Role",
      *   "target_class":"CsnUser\Entity\Role",
      *   "property": "name"
      * })

@@ -116,19 +116,16 @@ class IndexController extends AbstractActionController
                         
                         if ($this->params()->fromPost('rememberme')) {
                             $useCookies = true;
-                            $cookieLifeTime = 14*24*60*60;
+                            $cookieLifeTime = 14 * 24 * 60 * 60;
                         } else {
                             $useCookies = false;
                             $cookieLifeTime = 0;
                         }
-                        
-                        $sessionLifeTime = $this->getOptions()->getSessionLifeTime();
                         $sessionManager = $this->getServiceLocator()->get('Zend\Session\SessionManager');
-
                         $sessionManager->getConfig()->setUseCookies($useCookies);
                         $sessionManager->getConfig()->setCookieHttpOnly(true);
-                        $sessionManager->getConfig()->setCookieDomain($this->getRequest()->getUri()->getHost());
-                        $sessionManager->rememberMe(60*$sessionLifeTime);
+                        $sessionManager->getConfig()->setRememberMeSeconds(60 * $this->getOptions()->getSessionLifeTime());
+                        $sessionManager->rememberMe($cookieLifeTime);
                         
                         return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
                     }
