@@ -23,21 +23,41 @@ return array(
          *
          * Upon successful login the user will be redirected to the entered route
          *
-         * Default value: 'user'
+         * Default value: 'user-index''
          * Accepted values: A valid route name within your application
          *
          */
         'login_redirect_route' => 'user-index',
+        
+        /**
+         * Login Redirect Route Options
+         *
+         * Options for the login redirect route
+         *
+         * Default value: empty array
+         * Accepted values: array of accepted route options
+         */
+        'login_redirect_route_options' => array(),
     
         /**
          * Logout Redirect Route
          *
          * Upon logging out the user will be redirected to the enterd route
          *
-         * Default value: 'user'
+         * Default value: 'user-index''
          * Accepted values: A valid route name within your application
          */
         'logout_redirect_route' => 'user-index',
+        
+        /**
+         * Logout Redirect Route Options
+         *
+         * Options for the Logout Redirect Route
+         *
+         * Default value: empty array
+         * Accepted values: array of accepted route options
+         */
+        'logout_redirect_route_options' => array(),
         
         /**
          * Sender email dadress

@@ -58,7 +58,7 @@ class RegistrationController extends AbstractActionController
     public function indexAction()
     {
         if($this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $user = new User;
@@ -121,7 +121,7 @@ class RegistrationController extends AbstractActionController
     public function editProfileAction()
     {
         if(!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $form = $this->getUserFormHelper()->createUserForm($user, 'EditProfile');
@@ -165,7 +165,7 @@ class RegistrationController extends AbstractActionController
     public function changePasswordAction()
     {
         if(!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
     
         $form = $this->getUserFormHelper()->createUserForm($user, 'ChangePassword');
@@ -205,7 +205,7 @@ class RegistrationController extends AbstractActionController
     public function resetPasswordAction()
     {
         if($user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
     
         $user = new User;
@@ -267,7 +267,7 @@ class RegistrationController extends AbstractActionController
     public function changeEmailAction()
     {
         if(!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
 
         $form = $this->getUserFormHelper()->createUserForm($user, 'ChangeEmail');
@@ -311,7 +311,7 @@ class RegistrationController extends AbstractActionController
     public function changeSecurityQuestionAction()
     {
         if(!$user = $this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $form = $this->getUserFormHelper()->createUserForm($user, 'ChangeSecurityQuestion');

@@ -67,7 +67,7 @@ class IndexController extends AbstractActionController
     public function loginAction()
     {
         if ($user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $user = new User;
@@ -127,7 +127,7 @@ class IndexController extends AbstractActionController
                         $sessionManager->getConfig()->setRememberMeSeconds(60 * $this->getOptions()->getSessionLifeTime());
                         $sessionManager->rememberMe($cookieLifeTime);
                         
-                        return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+                        return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
                     }
                     
                     foreach ($authResult->getMessages() as $message) {
@@ -162,7 +162,7 @@ class IndexController extends AbstractActionController
     public function logoutAction()
     {
         if (!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
@@ -172,7 +172,7 @@ class IndexController extends AbstractActionController
             $sessionManager->forgetMe();
         }
 
-        return $this->redirect()->toRoute($this->getOptions()->getLogoutRedirectRoute());
+        return $this->redirect()->toRoute($this->getOptions()->getLogoutRedirectRoute(), $this->getOptions()->getLogoutRedirectRouteOptions());
     }
 
     /**

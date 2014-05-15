@@ -27,11 +27,21 @@ class ModuleOptions extends AbstractOptions
      * @var string
      */
     protected $loginRedirectRoute = 'user';
+    
+    /**
+     * @var array
+     */
+    protected $loginRedirectRouteOptions = array();
 
     /**
      * @var string
      */
     protected $logoutRedirectRoute = 'user';
+    
+    /**
+     * @var array
+     */
+    protected $logoutRedirectRouteOptions = array();
 
     /**
      * @var string
@@ -80,6 +90,29 @@ class ModuleOptions extends AbstractOptions
     {
         return $this->loginRedirectRoute;
     }
+    
+    /**
+     * set login redirect route options
+     *
+     * @param  array $loginRedirectRouteOptions
+     * @return ModuleOptions
+     */
+    public function setLoginRedirectRouteOptions($loginRedirectRouteOptions)
+    {
+        $this->loginRedirectRouteOptions = $loginRedirectRouteOptions;
+    
+        return $this;
+    }
+    
+    /**
+     * get login redirect route options
+     *
+     * @return array
+     */
+    public function getLoginRedirectRouteOptions()
+    {
+        return $this->loginRedirectRouteOptions;
+    }    
 
     /**
      * set logout redirect route
@@ -103,6 +136,29 @@ class ModuleOptions extends AbstractOptions
     {
         return $this->logoutRedirectRoute;
     }
+    
+    /**
+     * set logout redirect route options
+     *
+     * @param  array $logoutRedirectRouteOptions
+     * @return ModuleOptions
+     */
+    public function setLogoutRedirectRouteOptions($logoutRedirectRouteOptions)
+    {
+        $this->logoutRedirectRouteOptions = $logoutRedirectRouteOptions;
+    
+        return $this;
+    }
+    
+    /**
+     * get logout redirect route options
+     *
+     * @return array
+     */
+    public function getLogoutRedirectRouteOptions()
+    {
+        return $this->logoutRedirectRouteOptions;
+    }    
 
     /**
      * set sender email address

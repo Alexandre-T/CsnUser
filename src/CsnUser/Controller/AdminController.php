@@ -56,7 +56,7 @@ class AdminController extends AbstractActionController
     public function indexAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         $users = $this->getEntityManager()->getRepository('CsnUser\Entity\User')->findall();
@@ -73,7 +73,7 @@ class AdminController extends AbstractActionController
     public function createUserAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         try {
@@ -120,7 +120,7 @@ class AdminController extends AbstractActionController
     public function editUserAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         try {
@@ -177,7 +177,7 @@ class AdminController extends AbstractActionController
     public function deleteUserAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -216,7 +216,7 @@ class AdminController extends AbstractActionController
     public function setUserStateAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         $id = (int) $this->params()->fromRoute('id', 0);
