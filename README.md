@@ -82,6 +82,19 @@ The following options are available:
 >### It is ready? ###
 Navigate to *[hostname]/user* in your browser to view different options for login, registration, forgotten password, etc.
 
+Enable module translations
+--------------------------
+If you wish to enable module translations, you need to add this array to `translation_file_patterns` key in your `translators` key in Zend Skeleton Application **Application** module config `module.config.php` file. After that, you may proceed to create your own translation files that are located in `CsnUser/language`
+
+```
+array(
+    'type'     => 'gettext',
+    'base_dir' => __DIR__ . '/../../CsnUser/language',
+    'pattern'  => '%s.mo',
+    'text_domain' => 'csnuser',
+)
+```
+
 Routes
 ------------
 The following routes are available:
