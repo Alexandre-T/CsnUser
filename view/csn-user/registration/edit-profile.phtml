@@ -29,13 +29,13 @@ $form->setAttributes(array(
 $form->get('firstName')->setAttributes(array(
     'required' => 'false',
     'class' => 'form-control input-lg', 
-    'placeholder' => $this->translate('First Name')
+    'placeholder' => $this->translate('First Name', 'csnuser')
 ));
 
 $form->get('lastName')->setAttributes(array(
     'required' => 'false',
     'class' => 'form-control input-lg', 
-    'placeholder' => $this->translate('Last Name')
+    'placeholder' => $this->translate('Last Name', 'csnuser')
 ));
 
 $form->get('language')->setAttributes(array(
@@ -45,13 +45,13 @@ $form->get('language')->setAttributes(array(
 
 $form->get('submit')->setAttributes(array(
     'class' => 'btn btn btn-success btn-lg', 
-    'value' => $this->translate('Update Profile')
+    'value' => $this->translate('Update Profile', 'csnuser')
 ));
 
 $form->prepare();
 ?>
 <div class="jumbotron">
-  <h2><?php echo $this->translate('Edit Profile')?></h2>
+  <h2><?php echo $this->translate('Edit Profile', 'csnuser')?></h2>
     <div class="container" id="wrap">
 	  <div class="row">
         <div class="col-md-8 col-md-offset-3">
@@ -62,33 +62,33 @@ $form->prepare();
               </div>
             </div>
             <div>
-              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Username') ?>: </span><?php echo $this->username ?>
+              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Username', 'csnuser') ?>: </span><?php echo $this->username ?>
             </div>
             <div>
-              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Password') ?>: </span>******
+              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Password', 'csnuser') ?>: </span>******
               <br />
               <a href="<?php echo $this->url('user-register', array('action' => 'change-password'));?>">
-                <?php echo $this->translate('Change Password'); ?>
+                <?php echo $this->translate('Change Password', 'csnuser'); ?>
               </a>
             </div>
             <div>
-              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Email') ?>: </span>
+              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Email', 'csnuser') ?>: </span>
               <?php echo $this->email ?>
               <br/ >
               <a href="<?php echo $this->url('user-register', array('action' => 'change-email'));?>">
-                <?php echo $this->translate('Change Email'); ?>
+                <?php echo $this->translate('Change Email', 'csnuser'); ?>
               </a>
             </div>
             <div>
-              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Security Question') ?>: </span>
+              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Security Question', 'csnuser') ?>: </span>
               <?php echo $this->securityQuestion ?>
               <br/ >
               <a href="<?php echo $this->url('user-register', array('action' => 'change-security-question'));?>">
-                <?php echo $this->translate('Change Security Question'); ?>
+                <?php echo $this->translate('Change Security Question', 'csnuser'); ?>
               </a>
             </div>
             <div>
-              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your First/Last Name') ?>:</span>
+              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your First/Last Name', 'csnuser') ?>:</span>
               <br/ >
 	          <div class="row">
                 <div class="col-md-6">
@@ -106,7 +106,7 @@ $form->prepare();
                 ?>
                 </div>
               </div>
-              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Language') ?>:</span>
+              <span class="zf-green" style="font-size: 24px;"><?php echo $this->translate('Your Language', 'csnuser') ?>:</span>
               <br/ >
               <?php
                 $element = $form->get('language');

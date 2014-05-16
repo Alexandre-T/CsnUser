@@ -247,7 +247,7 @@ class UserFormFactory implements FactoryInterface
                 'onclick' => 'window.location="'.$this->getUrlPlugin()->fromRoute('user-index', array('action' => 'login')).'"',
             ),
             'options' => array(
-                'label' => $this->getTranslatorHelper()->translate('Sign In'),
+                'label' => $this->getTranslatorHelper()->translate('Sign In', 'csnuser'),
             )
         ));
     }
@@ -376,7 +376,7 @@ class UserFormFactory implements FactoryInterface
                 'object_repository' => $entityManager->getRepository('CsnUser\Entity\User'),
                 'fields'            => array('username'),
                 'messages' => array(
-                    'objectFound' => $this->getTranslatorHelper()->translate('This username is already taken'),
+                    'objectFound' => $this->getTranslatorHelper()->translate('This username is already taken', 'csnuser'),
                 ),
             ))
         );
@@ -386,7 +386,7 @@ class UserFormFactory implements FactoryInterface
                 'object_repository' => $entityManager->getRepository('CsnUser\Entity\User'),
                 'fields'            => array('email'),
                 'messages' => array(
-                    'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists'),
+                    'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists', 'csnuser'),
                 ),
             ))
         );
@@ -465,7 +465,7 @@ class UserFormFactory implements FactoryInterface
                         'object_repository' => $this->getEntityManager()->getRepository('CsnUser\Entity\User'),
                         'fields' => array('email'),
                         'messages' => array(
-                            'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists'),
+                            'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists', 'csnuser'),
                         ),
                     ),
                 ),

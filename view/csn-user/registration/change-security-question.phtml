@@ -33,13 +33,13 @@ $form->get('question')->setAttributes(array(
 
 $form->get('submit')->setAttributes(array(
     'class' => 'btn btn btn-success btn-lg', 
-    'value' => $this->translate('Change Security Question')
+    'value' => $this->translate('Change Security Question', 'csnuser')
 ));
 
 $form->prepare();
 ?>
 <div class="jumbotron">
-  <h2><?php echo $this->translate('Change Security Question')?></h2>
+  <h2><?php echo $this->translate('Change Security Question', 'csnuser')?></h2>
     <div class="container" id="wrap">
 	  <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -49,7 +49,7 @@ $form->prepare();
                 <?php echo $this->message ?>      
               </div>
             </div>
-            <input type="password" autocomplete="off" value="" placeholder="<?php echo $this->translate('Current Password') ?>" class="form-control input-lg" required="required" name="password">
+            <input type="password" autocomplete="off" value="" placeholder="<?php echo $this->translate('Current Password', 'csnuser') ?>" class="form-control input-lg" required="required" name="password">
             <?php
               $element = $form->get('password');
               //echo $this->formElement($element);
@@ -60,7 +60,7 @@ $form->prepare();
               echo $this->formElement($element);
               echo $this->formElementErrors($element);
             ?>
-            <input type="text" autocomplete="off" value="" placeholder="<?php echo $this->translate('Security Answer') ?>" class="form-control input-lg" required="required" name="answer">
+            <input type="text" autocomplete="off" value="" placeholder="<?php echo $this->translate('Security Answer', 'csnuser') ?>" class="form-control input-lg" required="required" name="answer">
             <?php
               $element = $form->get('answer');
               echo $this->formElementErrors($element);

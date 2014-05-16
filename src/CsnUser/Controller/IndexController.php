@@ -89,7 +89,7 @@ class IndexController extends AbstractActionController
                     if(!isset($user)) {
                         $message = 'The username or email is not valid!';
                         return new ViewModel(array(
-                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid', 'csnuser'),
                             'form'	=> $form,
                             'messages' => $messages,
                             'navMenu' => $this->getOptions()->getNavMenu()
@@ -97,9 +97,9 @@ class IndexController extends AbstractActionController
                     }
                     
                     if($user->getState()->getId() < 2) {
-                        $messages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.');
+                        $messages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.', 'csnuser');
                         return new ViewModel(array(
-                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid', 'csnuser'),
                             'form'	=> $form,
                             'messages' => $messages,
                             'navMenu' => $this->getOptions()->getNavMenu()
@@ -135,7 +135,7 @@ class IndexController extends AbstractActionController
                     }
                 } catch (\Exception $e) {
                     return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                        $this->getTranslatorHelper()->translate('Something went wrong during login! Please, try again later.'),
+                        $this->getTranslatorHelper()->translate('Something went wrong during login! Please, try again later.', 'csnuser'),
                         $e,
                         $this->getOptions()->getDisplayExceptions(),
                         $this->getOptions()->getNavMenu()
@@ -145,7 +145,7 @@ class IndexController extends AbstractActionController
         }
         
         return new ViewModel(array(
-            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid', 'csnuser'),
             'form'	=> $form,
             'messages' => $messages,
             'navMenu' => $this->getOptions()->getNavMenu()

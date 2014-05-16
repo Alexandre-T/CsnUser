@@ -91,14 +91,14 @@ class AdminController extends AbstractActionController
                     $user->setPassword(UserCredentialsService::encryptPassword($user->getPassword()));
                     $entityManager->persist($user);
                     $entityManager->flush();
-                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User created Successfully'));
+                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User created Successfully', 'csnuser'));
                     return $this->redirect()->toRoute('user-admin');                                        
                 }
             }        
         }
         catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during user creation! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during user creation! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 false
@@ -127,7 +127,7 @@ class AdminController extends AbstractActionController
             $id = (int) $this->params()->fromRoute('id', 0);
     
             if ($id == 0) {
-                $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid'));
+                $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid', 'csnuser'));
                 return $this->redirect()->toRoute('user-admin');
             }
             
@@ -146,14 +146,14 @@ class AdminController extends AbstractActionController
                 if ($form->isValid()) {
                     $entityManager->persist($user);
                     $entityManager->flush();
-                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully'));
+                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully', 'csnuser'));
                     return $this->redirect()->toRoute('user-admin');
                 }
             }  
         }      
         catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during update user process! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during update user process! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 false
@@ -183,7 +183,7 @@ class AdminController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
 
         if ($id == 0) {
-            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid'));
+            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid', 'csnuser'));
             return $this->redirect()->toRoute('user-admin');
         }
            
@@ -192,11 +192,11 @@ class AdminController extends AbstractActionController
             $user = $entityManager->getRepository('CsnUser\Entity\User')->find($id);
             $entityManager->remove($user);
             $entityManager->flush();
-            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Deleted Successfully'));
+            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Deleted Successfully', 'csnuser'));
         }
         catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 false
@@ -223,7 +223,7 @@ class AdminController extends AbstractActionController
         $state = (int) $this->params()->fromRoute('state', -1);
         
         if ($id === 0 || $state === -1) {
-            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID or state invalid'));
+            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID or state invalid', 'csnuser'));
             return $this->redirect()->toRoute('user-admin');
         }
          
@@ -233,11 +233,11 @@ class AdminController extends AbstractActionController
             $user->setState($entityManager->find('CsnUser\Entity\State', $state));
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully'));
+            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully', 'csnuser'));
         }
         catch (\Exception $e) {
           return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-              $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.'),
+              $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.', 'csnuser'),
               $e,
               $this->getOptions()->getDisplayExceptions(),
               false
