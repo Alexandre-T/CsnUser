@@ -1,0 +1,431 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CsnUser\n"
+"POT-Creation-Date: 2014-05-16 14:48-0300\n"
+"PO-Revision-Date: 2014-05-16 14:53-0300\n"
+"Last-Translator: Martin Briglia <martin@mgscreativa.com>\n"
+"Language-Team: CoolCsn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"Language: en_US\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Service/Factory/UserFormFactory.php:250
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:83
+msgid "Sign In"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Service/Factory/UserFormFactory.php:379
+msgid "This username is already taken"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Service/Factory/UserFormFactory.php:389
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Service/Factory/UserFormFactory.php:468
+msgid "An user with this email already exists"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/IndexController.php:92
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/IndexController.php:102
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/IndexController.php:148
+msgid "Your authentication credentials are not valid"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/IndexController.php:100
+msgid "Your username is disabled. Please contact an administrator."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/IndexController.php:138
+msgid "Something went wrong during login! Please, try again later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:83
+msgid "Please, confirm your registration!"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:84
+#, php-format
+msgid "Please, click the link to confirm your registration => %s"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:97
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:245
+msgid ""
+"Something went wrong when trying to send activation email! Please, try again "
+"later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:144
+msgid "Your profile has been edited"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:190
+msgid "Your answer is wrong. Please provide the correct answer."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:230
+msgid "Please, confirm your request to change password!"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:231
+#, php-format
+msgid ""
+"Hi, %s. Please, follow this link %s to confirm your request to change "
+"password."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:296
+msgid "Your current password is not correct."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:336
+msgid "Your password is wrong. Please provide the correct password."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:373
+msgid ""
+"Something went wrong during the activation of your account! Please, try "
+"again later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:402
+#, php-format
+msgid ""
+"Hello again %s. Your new password is: %s. Please, follow this link %s to log "
+"in with your new password."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/RegistrationController.php:418
+msgid ""
+"An error occured during the confirmation of your password change! Please, "
+"try again later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:94
+msgid "User created Successfully"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:101
+msgid "Something went wrong during user creation! Please, try again later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:130
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:186
+msgid "User ID invalid"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:149
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:236
+msgid "User Updated Successfully"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:156
+msgid ""
+"Something went wrong during update user process! Please, try again later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:195
+msgid "User Deleted Successfully"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:199
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:240
+msgid ""
+"Something went wrong during user delete process! Please, try again later."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/src/CsnUser/Controller/AdminController.php:226
+msgid "User ID or state invalid"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/layout/nav-menu.phtml:18
+msgid "User Home"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/layout/nav-menu.phtml:21
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:54
+msgid "Edit Profile"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/layout/nav-menu.phtml:24
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/index.phtml:28
+msgid "Log Out"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/layout/nav-menu.phtml:29
+msgid "Log in"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/layout/nav-menu.phtml:32
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:78
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:89
+msgid "Sign Up"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/layout/nav-menu.phtml:35
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/reset-password.phtml:48
+msgid "Reset Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/confirm-email-success.phtml:21
+msgid "Thank you! Your registration has been confirmed."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:31
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:30
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:30
+msgid "Username"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:37
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:32
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:36
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:36
+msgid "First Name"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:43
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:38
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:42
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:42
+msgid "Last Name"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:48
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:75
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:48
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:48
+msgid "Your Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:53
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:36
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:53
+msgid "Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:58
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:58
+msgid "Confirm Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:67
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:74
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:84
+msgid "Type Your Answer"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration.phtml:73
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/reset-password.phtml:37
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:50
+msgid "Verify you are human"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/confirm-email-change-password.phtml:21
+#, php-format
+msgid ""
+"Confirmation successful! You have a new password. An email has been sent to "
+"<span class=\"zf-green\">%s</span> with your new password."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-email-success.phtml:21
+msgid "Thank you! Your email has been changed to "
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/password-change-success.phtml:21
+#, php-format
+msgid ""
+"An email has been sent to <span class=\"zf-green\">%s</span>. Please, check "
+"your inbox and confirm your request to change password!"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-security-question-success.phtml:21
+msgid "Thank you! Your security question has been changed"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password-success.phtml:21
+msgid "Thank you! Your password has been changed successfully."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password.phtml:31
+msgid "Confirm New Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password.phtml:36
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password.phtml:42
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:71
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:121
+msgid "Change Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password.phtml:53
+msgid "Security Question"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password.phtml:57
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-security-question.phtml:63
+msgid "Security Answer"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-password.phtml:62
+msgid "New Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/reset-password.phtml:31
+msgid "Write Your Username or Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/reset-password.phtml:42
+msgid "Send Reset Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-security-question.phtml:36
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-security-question.phtml:42
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:87
+msgid "Change Security Question"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-security-question.phtml:52
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-email.phtml:57
+msgid "Current Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-email.phtml:31
+msgid "New Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-email.phtml:36
+msgid "Confirm New Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-email.phtml:41
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/change-email.phtml:47
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:79
+msgid "Change Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/registration-success.phtml:21
+#, php-format
+msgid ""
+"An email has been sent to <span class=\"zf-green\">%s</span>. Please, check "
+"your inbox and confirm your registration!"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:48
+msgid "Update Profile"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:65
+msgid "Your Username"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:68
+msgid "Your Password"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:83
+msgid "Your Security Question"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:91
+msgid "Your First/Last Name"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/registration/edit-profile.phtml:109
+msgid "Your Language"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:31
+msgid "Username or Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:40
+msgid "Activate Remember Me Function"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:44
+msgid "Remember me?"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:55
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:61
+msgid "Log In"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:105
+msgid "Sign up"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/login.phtml:108
+msgid "Forgot your password?"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/index.phtml:22
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/index.phtml:35
+msgid "Welcome"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/index.phtml:32
+msgid "Congratulations! You have successfully logged in."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/index.phtml:35
+msgid "Guest"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/index/index.phtml:37
+msgid "Please follow the buttons at the top to navigate through the system."
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:79
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/edit-user-form.phtml:86
+msgid "Edit User"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:89
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:37
+msgid "Create User"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/new-user-form.phtml:96
+msgid "New User"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:34
+msgid "Users Admin Table"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:45
+msgid "Name"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:46
+msgid "Email"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:47
+msgid "State"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:48
+msgid "Actions"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:68
+msgid "Enable"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:71
+msgid "Edit"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:73
+msgid "Do you really want to delete this user?"
+msgstr ""
+
+#: /home/martin/workspace/zf2csn/module/CsnUser/view/csn-user/admin/index.phtml:74
+msgid "Delete"
+msgstr ""
