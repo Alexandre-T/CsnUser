@@ -1,20 +1,33 @@
 <?php
+/**
+ * CsnUser - Coolcsn Zend Framework 2 User Module
+ * 
+ * @link https://github.com/coolcsn/CsnUser for the canonical source repository
+ * @copyright Copyright (c) 2005-2013 LightSoft 2005 Ltd. Bulgaria
+ * @license https://github.com/coolcsn/CsnUser/blob/master/LICENSE BSDLicense
+ * @author Stoyan Cheresharov <stoyan@coolcsn.com>
+ * @author Svetoslav Chonkov <svetoslav.chonkov@gmail.com>
+ * @author Nikola Vasilev <niko7vasilev@gmail.com>
+ * @author Stoyan Revov <st.revov@gmail.com>
+ * @author Martin Briglia <martin@mgscreativa.com>
+ */
 
 namespace CsnUser\Entity;
 
-use Doctrine\ORM\Mapping as ORM;//MappedSuperclass (delete this comment)
+use Doctrine\ORM\Mapping as ORM;
+use Zend\Form\Annotation;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-use Zend\Form\Annotation;
-
 /**
- * Default implementation of User
- *
- * @ORM\Table(name="`user`")
+ * Doctrine ORM implementation of User entity
+ * 
  * @ORM\Entity(repositoryClass="CsnUser\Entity\Repository\UserRepository")
+ * @ORM\Table(name="`user`",
+ *   indexes={@ORM\Index(name="search_idx", columns={"username", "first_name", "last_name", "email"})}
+ * )
  * @Annotation\Name("User")
- * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ClassMethods")
  */
 class User
 {
@@ -31,34 +44,28 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=100, nullable=false)
+     * @ORM\Column(name="username", type="string", length=30, nullable=false, unique=true)
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Filter({"name":"StringTrim"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":30}})
-     * @Annotation\Validator({"name":"Regex", "options":{"pattern":"/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/"}})
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Username:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "min":6, "max":30}})
+     * @Annotation\Validator({"name":"Regex", "options":{"pattern":"/^[ña-zÑA-Z][ña-zÑA-Z0-9\_\-]+$/"}})
+     * @Annotation\Required(true)
+     * @Annotation\Attributes({
+     *   "type":"text",
+     *   "required":"true"
+     * })
      */
     protected $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="display_name", type="string", length=100, nullable=false)
-     * @Annotation\Filter({"name":"StringTrim"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":40}})
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Display name:"})
-     */
-    protected $displayName;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="first_name", type="string", length=40, nullable=true)
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Filter({"name":"StringTrim"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":40}})
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Display name:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "max":40}})
      */
     protected $firstName;
 
@@ -66,85 +73,135 @@ class User
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=40, nullable=true)
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Filter({"name":"StringTrim"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":40}})
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Display name:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "max":40}})
      */
     protected $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=100, nullable=false)
-     * @Annotation\Attributes({"type":"password"})
-     * @Annotation\Options({"label":"Password:"})
-     */
-    protected $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=60, nullable=false)
+     * @ORM\Column(name="email", type="string", length=60, nullable=false, unique=true)
      * @Annotation\Type("Zend\Form\Element\Email")
-     * @Annotation\Options({"label":"Your email address:"})
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"EmailAddress"})
+     * @Annotation\Required(true)
+     * @Annotation\Attributes({
+     *   "type":"email",
+     *   "required":"true"
+     * })
      */
     protected $email;
 
     /**
-    * @var CsnUser\Entity\Role
-    *
-    * @ORM\ManyToOne(targetEntity="CsnUser\Entity\Role")
-    * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
-    * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
-    * @Annotation\Options({
-    * "label":"Role:",
-    * "empty_option": "Please, choose your role",
-    * "target_class":"CsnUser\Entity\Role",
-    * "property": "name"})
-    */
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=60, nullable=false)
+     * @Annotation\Type("Zend\Form\Element\Password")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "min":6, "max":20}})
+     * @Annotation\Required(true)
+     * @Annotation\Attributes({
+     *   "type":"password",
+     *   "required":"true"
+     * })
+     */
+    protected $password;
+
+    /**
+     * @var CsnUser\Entity\Role
+     * 
+     * @ORM\ManyToOne(targetEntity="CsnUser\Entity\Role")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"Digits"})
+     * @Annotation\Required(true)
+     * @Annotation\Options({
+     *   "required":"true",
+     *   "empty_option": "User Role",
+     *   "target_class":"CsnUser\Entity\Role",
+     *   "property": "name"
+     * })
+     */
     protected $role;
 
     /**
     * @var CsnUser\Entity\Language
     *
     * @ORM\ManyToOne(targetEntity="CsnUser\Entity\Language")
-    * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+    * @ORM\JoinColumn(name="language_id", referencedColumnName="id", nullable=false)
     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+    * @Annotation\Filter({"name":"StripTags"})
+    * @Annotation\Filter({"name":"StringTrim"})
+    * @Annotation\Validator({"name":"Digits"})
     * @Annotation\Options({
-    * "label":"Language:",
-    * "empty_option": "Please, choose your language",
-    * "target_class":"CsnUser\Entity\Language",
-    * "property": "name"})
+    *   "label":"Language:",
+    *   "empty_option": "User Language",
+    *   "target_class":"CsnUser\Entity\Language",
+    *   "property": "name"
+    * })
     */
     protected $language;
 
     /**
-     * @var integer
+     * @var CsnUser\Entity\State
      *
-     * @ORM\Column(name="state", type="integer", nullable=false)
-     * @Annotation\Type("Zend\Form\Element\Radio")
+     * @ORM\ManyToOne(targetEntity="CsnUser\Entity\State")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=false)
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"Digits"})
+     * @Annotation\Required(true)
      * @Annotation\Options({
-     * "label":"User Active:",
-     * "value_options":{"1":"Yes", "0":"No"}})
+     *   "required":"true",
+     *   "empty_option": "User State",
+     *   "target_class":"CsnUser\Entity\State",
+     *   "property": "state"
+     * })
      */
     protected $state;
 
     /**
-     * @var string
+     * @var CsnUser\Entity\Question
      *
-     * @ORM\Column(name="question", type="string", length=100, nullable=true)
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"User Question:"})
+     * @ORM\ManyToOne(targetEntity="CsnUser\Entity\Question")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", nullable=false)
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"Digits"})
+     * @Annotation\Required(true)
+     * @Annotation\Options({
+     *   "required":"true",
+     *   "empty_option": "Security Question",
+     *   "target_class":"CsnUser\Entity\Question",
+     *   "property": "question"
+     * })
      */
     protected $question;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="answer", type="string", length=100, nullable=true)
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"User Answer:"})
+     * @ORM\Column(name="answer", type="string", length=100, nullable=false)
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Filter({"name":"StringToLower", "options":{"encoding":"UTF-8"}})
+     * @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "min":6, "max":100}})
+     * @Annotation\Validator({"name":"Alnum", "options":{"allowWhiteSpace":true}})
+     * @Annotation\Required(true)
+     * @Annotation\Options({
+     *   "required":"true",
+     *   "autocomplete":"off"
+     * })
      */
     protected $answer;
 
@@ -152,19 +209,9 @@ class User
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"User Picture:"})
+     * @Annotation\Type("Zend\Form\Element\File")
      */
     protected $picture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password_salt", type="string", length=100, nullable=true)
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Password Salt:"})
-     */
-    protected $passwordSalt;
 
     /**
      * @var \DateTime
@@ -178,9 +225,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="registration_token", type="string", length=100, nullable=true)
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Registration Token:"})
+     * @ORM\Column(name="registration_token", type="string", length=32, nullable=true)
      */
     protected $registrationToken;
 
@@ -188,40 +233,34 @@ class User
      * @var boolean
      *
      * @ORM\Column(name="email_confirmed", type="boolean", nullable=false)
-     * @Annotation\Type("Zend\Form\Element\Radio")
-     * @Annotation\Options({
-     * "label":"User confirmed email:",
-     * "value_options":{"1":"Yes", "0":"No"}})
      */
     protected $emailConfirmed;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
-     * @Annotation\Exclude()
      **/
     protected $friendsWithMe;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
      * @ORM\JoinTable(name="friends",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_id", referencedColumnName="id")}
-     *      )
+     *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="friend_id", referencedColumnName="id")}
+     * )
      * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
      * @Annotation\Attributes({"multiple":true})
      * @Annotation\Options({
-     * "label":"My Friends:",
-     * "empty_option": "Please, choose your Friends",
-     * "target_class":"CsnUser\Entity\User",
-     * "property": "displayName",
-     * "is_method": true,
-     * "find_metod":{"name": "notExisitng", "params":{"criteria":{"id": "1"}, "orderBy":{"id": "DESC"}}}})
+     *   "empty_option": "Please, choose your Friends",
+     *   "target_class":"CsnUser\Entity\User",
+     *   "property": "displayName",
+     *   "is_method": true,
+     *   "find_metod":{"name": "notExisitng", "params":{"criteria":{"id": "1"}, "orderBy":{"id": "DESC"}}}}
+     * )
      **/
     protected $myFriends;
 
     public function __construct()
     {
-        $this->registrationDate = new \DateTime();
         $this->friendsWithMe = new ArrayCollection();
         $this->myFriends = new ArrayCollection();
     }
@@ -446,7 +485,7 @@ class User
     /**
      * Set question
      *
-     * @param  string $question
+     * @param  Question $question
      * @return User
      */
     public function setQuestion($question)
@@ -510,29 +549,6 @@ class User
     public function getPicture()
     {
         return $this->picture;
-    }
-
-    /**
-     * Set passwordSalt
-     *
-     * @param  string $passwordSalt
-     * @return User
-     */
-    public function setPasswordSalt($passwordSalt)
-    {
-        $this->passwordSalt = $passwordSalt;
-
-        return $this;
-    }
-
-    /**
-     * Get passwordSalt
-     *
-     * @return string
-     */
-    public function getPasswordSalt()
-    {
-        return $this->passwordSalt;
     }
 
     /**

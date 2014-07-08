@@ -17,12 +17,12 @@ namespace CsnUser\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Language
+ * State
  *
- * @ORM\Table(name="language")
+ * @ORM\Table(name="state")
  * @ORM\Entity
  */
-class Language
+class State
 {
     /**
      * @var integer
@@ -36,17 +36,10 @@ class Language
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=15, nullable=false)
+     * @ORM\Column(name="state", type="string", length=50, nullable=false, unique=true)
      */
-    protected $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="abbreviation", type="string", length=10, nullable=false)
-     */
-    protected $abbreviation;
-
+    protected $state;
+    
     /**
      * Get id
      *
@@ -58,48 +51,25 @@ class Language
     }
 
     /**
-     * Set name
+     * Set state
      *
-     * @param  string   $name
+     * @param  string   $state
      * @return Language
      */
-    public function setName($name)
+    public function setState($state)
     {
-        $this->name = $name;
+        $this->state = $state;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get state
      *
      * @return string
      */
-    public function getName()
+    public function getState()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set abbreviation
-     *
-     * @param  string   $abbreviation
-     * @return Language
-     */
-    public function setAbbreviation($abbreviation)
-    {
-        $this->abbreviation = $abbreviation;
-
-        return $this;
-    }
-
-    /**
-     * Get abbreviation
-     *
-     * @return string
-     */
-    public function getAbbreviation()
-    {
-        return $this->abbreviation;
+        return $this->state;
     }
 }

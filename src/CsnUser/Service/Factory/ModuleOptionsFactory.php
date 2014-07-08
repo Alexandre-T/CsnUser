@@ -12,9 +12,17 @@
  * @author Martin Briglia <martin@mgscreativa.com>
  */
 
-/**
- * This file is placed here for compatibility with ZendFramework 2's ModuleManager.
- * It allows usage of this module even without composer.
- * The original Module.php is in 'src/CsnUser' in order to respect PSR-0
- */
-require_once __DIR__ . '/src/CsnUser/Module.php';
+namespace CsnUser\Service\Factory;
+
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use CsnUser\Options\ModuleOptions;
+
+class ModuleOptionsFactory implements FactoryInterface
+{
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        $config = $serviceLocator->get('Config');
+        return new ModuleOptions(isset($config['csnuser']) ? $config['csnuser'] : array());
+    }
+}

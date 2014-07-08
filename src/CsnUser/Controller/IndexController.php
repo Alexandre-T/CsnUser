@@ -1,29 +1,29 @@
 <?php
 /**
- * coolcsn * Index Controller
+ * CsnUser - Coolcsn Zend Framework 2 User Module
+ * 
  * @link https://github.com/coolcsn/CsnUser for the canonical source repository
  * @copyright Copyright (c) 2005-2013 LightSoft 2005 Ltd. Bulgaria
  * @license https://github.com/coolcsn/CsnUser/blob/master/LICENSE BSDLicense
  * @author Stoyan Cheresharov <stoyan@coolcsn.com>
- * @author Nikola Vasilev <niko7vasilev@gmail.com>
  * @author Svetoslav Chonkov <svetoslav.chonkov@gmail.com>
+ * @author Nikola Vasilev <niko7vasilev@gmail.com>
  * @author Stoyan Revov <st.revov@gmail.com>
+ * @author Martin Briglia <martin@mgscreativa.com>
  */
 
 namespace CsnUser\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Session\SessionManager;
+use Zend\Session\Config\StandardConfig;
 
-use CsnUser\Entity\User; // only for the filters
-use CsnUser\Form\LoginForm;
-use CsnUser\Form\LoginFilter;
-
+use CsnUser\Entity\User;
 use CsnUser\Options\ModuleOptions;
 
 /**
- * <b>Authentication controller</b>
- * This controller has been build with educational purposes to demonstrate how authentication can be done
+ * Index controller
  */
 class IndexController extends AbstractActionController
 {
@@ -35,7 +35,17 @@ class IndexController extends AbstractActionController
     /**
      * @var Doctrine\ORM\EntityManager
      */
-    protected $em;
+    protected $entityManager;
+    
+    /**
+     * @var Zend\Mvc\I18n\Translator
+     */
+    protected $translatorHelper;
+    
+    /**
+     * @var Zend\Form\Form
+     */
+    protected $userFormHelper;
 
     /**
      * Index action
@@ -61,55 +71,80 @@ class IndexController extends AbstractActionController
         if ($user = $this->identity()) {
             return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
         }
-        $form = new LoginForm();
-        $form->get('submit')->setValue('Log in');
+        
+        $user = new User;
+        $form = $this->getUserFormHelper()->createUserForm($user, 'login');
         $messages = null;
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-
-            $form->setInputFilter(new LoginFilter($this->getServiceLocator()));
-            $form->setData($request->getPost());
+        if ($this->getRequest()->isPost()) {
+            $form->setValidationGroup('usernameOrEmail', 'password', 'rememberme', 'csrf', 'captcha');
+            $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $data = $form->getData();
                 $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
                 $adapter = $authService->getAdapter();
+                $usernameOrEmail = $this->params()->fromPost('usernameOrEmail');
 
-                $usernameOrEmail = $data['usernameOrEmail'];
-
-                // check for email first
-                if ($user = $this->getEntityManager()->getRepository('CsnUser\Entity\User')->findOneBy(array('email' => $usernameOrEmail))) {
-                    // Set username to the input array in place of the email
-                    $data['usernameOrEmail'] = $user->getUsername();
-                }
-
-                $adapter->setIdentityValue($data['usernameOrEmail']);
-                $adapter->setCredentialValue($data['password']);
-                $authResult = $authService->authenticate();
-                if ($authResult->isValid()) {
-                    $identity = $authResult->getIdentity();
-                    $authService->getStorage()->write($identity);
-                    $time = 1209600; // 14 days (1209600/3600 = 336 hours => 336/24 = 14 days)
-
-                    if ($data['rememberme']) {
-                        $sessionManager = new \Zend\Session\SessionManager();
-                        $sessionManager->rememberMe($time);
+                try {
+                    $user = $this->getEntityManager()->createQuery("SELECT u FROM CsnUser\Entity\User u WHERE u.email = '$usernameOrEmail' OR u.username = '$usernameOrEmail'")->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+                    $user = $user[0];
+                    
+                    if(!isset($user)) {
+                        $message = 'The username or email is not valid!';
+                        return new ViewModel(array(
+                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+                            'form'	=> $form,
+                            'messages' => $messages,
+                            'navMenu' => $this->getOptions()->getNavMenu()
+                        ));
+                    }
+                    
+                    if($user->getState()->getId() < 2) {
+                        $messages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.');
+                        return new ViewModel(array(
+                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+                            'form'	=> $form,
+                            'messages' => $messages,
+                            'navMenu' => $this->getOptions()->getNavMenu()
+                        ));
                     }
 
-                    return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
-                }
-                foreach ($authResult->getMessages() as $message) {
-                    $messages .= "$message\n";
+                    $adapter->setIdentityValue($user->getUsername());
+                    $adapter->setCredentialValue($this->params()->fromPost('password'));
+
+                    $authResult = $authService->authenticate();
+                    if ($authResult->isValid()) {
+                        $identity = $authResult->getIdentity();
+                        $authService->getStorage()->write($identity);
+                        
+                        if ($this->params()->fromPost('rememberme')) {
+                            $time = 1209600; // 14 days (1209600/3600 = 336 hours => 336/24 = 14 days)
+                            $sessionManager = new SessionManager();
+                            $sessionManager->rememberMe($time);
+                        }
+
+                        return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+                    }
+                    
+                    foreach ($authResult->getMessages() as $message) {
+                      $messages .= "$message\n";
+                    }
+                } catch (\Exception $e) {
+                    return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
+                        $this->getTranslatorHelper()->translate('Something went wrong during login! Please, try again later.'),
+                        $e,
+                        $this->getOptions()->getDisplayExceptions(),
+                        $this->getOptions()->getNavMenu()
+                    );
                 }
             }
         }
-
+        
         return new ViewModel(array(
-                                'error' => 'Your authentication credentials are not valid',
-                                'form'	=> $form,
-                                'messages' => $messages,
-                                'navMenu' => $this->getOptions()->getNavMenu()
-                            ));
+            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+            'form'	=> $form,
+            'messages' => $messages,
+            'navMenu' => $this->getOptions()->getNavMenu()
+        ));
     }
 
     /**
@@ -122,44 +157,13 @@ class IndexController extends AbstractActionController
     public function logoutAction()
     {
         $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-
-        // @todo Set up the auth adapter, $authAdapter
-
         if ($auth->hasIdentity()) {
-            $identity = $auth->getIdentity();
+            $auth->clearIdentity();
+            $sessionManager = new SessionManager();
+            $sessionManager->forgetMe();
         }
-        $auth->clearIdentity();
-        $sessionManager = new \Zend\Session\SessionManager();
-        $sessionManager->forgetMe();
 
         return $this->redirect()->toRoute($this->getOptions()->getLogoutRedirectRoute());
-
-    }
-
-    /**
-     * get entityManager
-     *
-     * @return EntityManager
-     */
-    public function getEntityManager()
-    {
-        if (null === $this->em) {
-            $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        }
-
-        return $this->em;
-    }
-
-     /**
-     * set options
-     *
-     * @return IndexController
-     */
-    public function setOptions($options)
-    {
-        $this->options = $options;
-
-        return $this;
     }
 
     /**
@@ -167,12 +171,54 @@ class IndexController extends AbstractActionController
      *
      * @return ModuleOptions
      */
-    public function getOptions()
+    private function getOptions()
     {
-        if (!$this->options instanceof ModuleOptions) {
-            $this->setOptions($this->getServiceLocator()->get('csnuser_module_options'));
+        if (null === $this->options) {
+            $this->options = $this->getServiceLocator()->get('csnuser_module_options');
+        }
+      
+        return $this->options;
+    }
+
+    /**
+     * get entityManager
+     *
+     * @return EntityManager
+     */
+    private function getEntityManager()
+    {
+        if (null === $this->entityManager) {
+            $this->entityManager = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         }
 
-        return $this->options;
+        return $this->entityManager;
+    }
+    
+    /**
+     * get translatorHelper
+     *
+     * @return  Zend\Mvc\I18n\Translator
+     */
+    private function getTranslatorHelper()
+    {
+        if (null === $this->translatorHelper) {
+           $this->translatorHelper = $this->getServiceLocator()->get('MvcTranslator');
+        }
+      
+        return $this->translatorHelper;
+    }
+    
+    /**
+     * get userFormHelper
+     *
+     * @return  Zend\Form\Form
+     */
+    private function getUserFormHelper()
+    {
+        if (null === $this->userFormHelper) {
+           $this->userFormHelper = $this->getServiceLocator()->get('csnuser_user_form');
+        }
+      
+        return $this->userFormHelper;
     }
 }

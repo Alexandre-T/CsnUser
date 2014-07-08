@@ -1,4 +1,3 @@
-<?php
 /**
  * CsnUser - Coolcsn Zend Framework 2 User Module
  * 
@@ -12,9 +11,27 @@
  * @author Martin Briglia <martin@mgscreativa.com>
  */
 
-/**
- * This file is placed here for compatibility with ZendFramework 2's ModuleManager.
- * It allows usage of this module even without composer.
- * The original Module.php is in 'src/CsnUser' in order to respect PSR-0
+/*
+ *CsnUser Styles
  */
-require_once __DIR__ . '/src/CsnUser/Module.php';
+.form .form-control { margin-bottom: 10px; }
+
+table.users-list td,
+table.users-list th {
+   text-align: center;   
+}
+    
+table.users-list a.name {
+  color: #3389D1;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0 0;
+}   
+    
+table.users-list span.subtext {
+  color: #778391;
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 0;
+  margin-top: 0;
+}

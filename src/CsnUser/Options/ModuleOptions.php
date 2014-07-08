@@ -1,4 +1,16 @@
 <?php
+/**
+ * CsnUser - Coolcsn Zend Framework 2 User Module
+ * 
+ * @link https://github.com/coolcsn/CsnUser for the canonical source repository
+ * @copyright Copyright (c) 2005-2013 LightSoft 2005 Ltd. Bulgaria
+ * @license https://github.com/coolcsn/CsnUser/blob/master/LICENSE BSDLicense
+ * @author Stoyan Cheresharov <stoyan@coolcsn.com>
+ * @author Svetoslav Chonkov <svetoslav.chonkov@gmail.com>
+ * @author Nikola Vasilev <niko7vasilev@gmail.com>
+ * @author Stoyan Revov <st.revov@gmail.com>
+ * @author Martin Briglia <martin@mgscreativa.com>
+ */
 
 namespace CsnUser\Options;
 
@@ -24,12 +36,24 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var string
      */
-    protected $static_salt = 'aFGQ475SDsdfsaf2342';
+    protected $senderEmailAdress = 'no-reply@example.com';
 
     /**
      * @var bool
      */
     protected $navMenu = true;
+    
+    /**
+     * @var bool
+     */
+    protected $displayExceptions = true;
+    
+    protected $captchaCharNum = 3;
+    
+    /**
+     * @var string
+     */
+    protected $authenticationService = 'doctrine.authenticationservice.orm_default';
 
     /**
      * set login redirect route
@@ -78,26 +102,26 @@ class ModuleOptions extends AbstractOptions
     }
 
     /**
-     * set static salt
+     * set sender email address
      *
-     * @param  string        $staticSalt
+     * @param  string        $senderEmailAdress
      * @return ModuleOptions
      */
-    public function setStaticSalt($staticSalt)
+    public function setSenderEmailAdress($senderEmailAdress)
     {
-        $this->static_salt = $staticSalt;
+        $this->senderEmailAdress = $senderEmailAdress;
 
         return $this;
     }
 
     /**
-     * get static salt
+     * get sender email address
      *
      * @return string
      */
-    public function getStaticSalt()
+    public function getSenderEmailAdress()
     {
-        return $this->static_salt;
+        return $this->senderEmailAdress;
     }
 
     /**
@@ -122,4 +146,74 @@ class ModuleOptions extends AbstractOptions
     {
         return $this->navMenu;
     }
+
+    /**
+     * set display exceptions
+     *
+     * @param  bool        $displayExceptions
+     * @return ModuleOptions
+     */
+    public function setDisplayExceptions($displayExceptions)
+    {
+        $this->displayExceptions = $displayExceptions;
+      
+        return $this;
+    }
+    
+    /**
+     * get visibility of exception error messages
+     *
+     * @return bool
+     */
+    public function getDisplayExceptions()
+    {
+        return $this->displayExceptions;
+    }
+    
+    /**
+     * set captcha number of characters
+     *
+     * @return int
+     */
+    public function setCaptchaCharNum($captchaCharNum)
+    {
+        $this->captchaCharNum = $captchaCharNum;
+        
+        return $this->captchaCharNum;
+    }
+    
+    /**
+     * get captcha number of characters
+     *
+     * @return int
+     */
+    public function getCaptchaCharNum()
+    {
+        return $this->captchaCharNum;
+    }
+    
+    
+    /**
+     * set authentication service from config file
+     *
+     * @param  bool        $authenticationService
+     * @return ModuleOptions
+     */
+    public function setAuthenticationService($authenticationService)
+    {
+      $this->authenticationService = $authenticationService;
+    
+      return $this;
+    }
+    
+    /**
+     * get authentication service from config file
+     *
+     * @return string
+     */
+    public function getAuthenticationService()
+    {
+      return $this->authenticationService;
+    }
+        
 }
