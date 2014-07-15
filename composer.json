@@ -1,5 +1,5 @@
 {
-    "name":         "coolcsn/csn-user",
+    "name":         "alexandre-t/csn-user",
     "description":  "Authentication based on DoctrineORMModule",
     "type":         "library",
     "license":      "BSD-3-Clause",
