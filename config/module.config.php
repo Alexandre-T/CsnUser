@@ -1,7 +1,7 @@
 <?php
 /**
  * CsnUser - Coolcsn Zend Framework 2 User Module
- * 
+ *
  * @link https://github.com/coolcsn/CsnUser for the canonical source repository
  * @copyright Copyright (c) 2005-2013 LightSoft 2005 Ltd. Bulgaria
  * @license https://github.com/coolcsn/CsnUser/blob/master/LICENSE BSDLicense
@@ -114,5 +114,15 @@ return array(
                 ),
             ),
         ),
+    ),
+    'translator' => array(
+    		'translation_file_patterns' => array(
+    				array(
+    						'type'     => 'gettext',
+    						'base_dir' => __DIR__ . '/../language',
+    						'pattern'  => '%s.mo',
+    						'text_domain' => 'csnuser',
+    				),
+    		),
     ),
 );

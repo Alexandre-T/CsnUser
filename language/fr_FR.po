@@ -1,0 +1,459 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CsnUser\n"
+"POT-Creation-Date: 2014-05-16 20:18-0300\n"
+"PO-Revision-Date: 2014-07-15 11:46+0100\n"
+"Last-Translator: \n"
+"Language-Team: CoolCsn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.6\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_FR\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/CsnUser/Service/Factory/UserFormFactory.php:250
+#: ../view/csn-user/registration/registration.phtml:83
+msgid "Sign In"
+msgstr "S'enregistrer"
+
+#: ../src/CsnUser/Service/Factory/UserFormFactory.php:379
+msgid "This username is already taken"
+msgstr "Ce nom d'utilisateur est déjà pris"
+
+#: ../src/CsnUser/Service/Factory/UserFormFactory.php:389
+#: ../src/CsnUser/Service/Factory/UserFormFactory.php:468
+msgid "An user with this email already exists"
+msgstr "Un utilisateur avec cet email existe déjà"
+
+#: ../src/CsnUser/Controller/IndexController.php:92
+#: ../src/CsnUser/Controller/IndexController.php:102
+#: ../src/CsnUser/Controller/IndexController.php:148
+msgid "Your authentication credentials are not valid"
+msgstr "Vos identifiants de connexion ne sont pas valides"
+
+#: ../src/CsnUser/Controller/IndexController.php:100
+msgid "Your username is disabled. Please contact an administrator."
+msgstr ""
+"Cet utilisateur a été désactivé. Veuillez contacter un administrateur !"
+
+#: ../src/CsnUser/Controller/IndexController.php:138
+msgid "Something went wrong during login! Please, try again later."
+msgstr ""
+"Une erreur s'est produite durant la connexion. Veuillez réessayer plus tard !"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:83
+msgid "Please, confirm your registration!"
+msgstr "Veuillez confirmer votre inscription !"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:84
+#, php-format
+msgid "Please, click the link to confirm your registration => %s"
+msgstr "Veuillez cliquer sur ce lien pour confirmer votre inscription : %s"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:97
+#: ../src/CsnUser/Controller/RegistrationController.php:245
+msgid ""
+"Something went wrong when trying to send activation email! Please, try again "
+"later."
+msgstr ""
+"Une erreur s'est produite lors de l'envoi du mail d'activation de votre "
+"compte. Veuillez réessayer plus tard !"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:144
+msgid "Your profile has been edited"
+msgstr "Votre profil a bien été modifié."
+
+#: ../src/CsnUser/Controller/RegistrationController.php:190
+msgid "Your answer is wrong. Please provide the correct answer."
+msgstr "Cette réponse est incorrecte. Veuillez entrer la bonne réponse !"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:230
+msgid "Please, confirm your request to change password!"
+msgstr ""
+"S'il-vous-plait, veuillez confirmer votre requête pour changer de mot de "
+"passe !"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:231
+#, php-format
+msgid ""
+"Hi, %s. Please, follow this link %s to confirm your request to change "
+"password."
+msgstr ""
+"Bonjour %s. Veuillez suivre ce lien pour confirmer le changement de mot de "
+"passe : %s"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:296
+msgid "Your current password is not correct."
+msgstr "Votre mot de passe est incorrect."
+
+#: ../src/CsnUser/Controller/RegistrationController.php:336
+msgid "Your password is wrong. Please provide the correct password."
+msgstr "Ce mot de passe est incorrect. Veuillez entrer le bon mot de passe !"
+
+#: ../src/CsnUser/Controller/RegistrationController.php:373
+msgid ""
+"Something went wrong during the activation of your account! Please, try "
+"again later."
+msgstr ""
+"Une erreur est survenue durant l'activation de votre compte. Veuillez "
+"réessayer plus tard."
+
+#: ../src/CsnUser/Controller/RegistrationController.php:402
+#, php-format
+msgid ""
+"Hello again %s. Your new password is: %s. Please, follow this link %s to log "
+"in with your new password."
+msgstr ""
+"Bonjour %s. Votre nouveau mot de passe est : %s. Veuillez suivre ce lien "
+"pour vous connecter avec votre nouveau mot de passe : %s ."
+
+#: ../src/CsnUser/Controller/RegistrationController.php:418
+msgid ""
+"An error occured during the confirmation of your password change! Please, "
+"try again later."
+msgstr ""
+"Une erreur est survenue durant la confirmation de votre changement de mot de "
+"passe. Veuillez réessayer plus tard !"
+
+#: ../src/CsnUser/Controller/AdminController.php:94
+msgid "User created Successfully"
+msgstr "Utilisateur créé avec succès"
+
+#: ../src/CsnUser/Controller/AdminController.php:101
+msgid "Something went wrong during user creation! Please, try again later."
+msgstr ""
+"Une erreur est survenue durant la création de cet utilisateur. Veuillez "
+"réessayer plus tard !"
+
+#: ../src/CsnUser/Controller/AdminController.php:130
+#: ../src/CsnUser/Controller/AdminController.php:186
+msgid "User ID invalid"
+msgstr "Identifiant invalide"
+
+#: ../src/CsnUser/Controller/AdminController.php:149
+#: ../src/CsnUser/Controller/AdminController.php:236
+msgid "User Updated Successfully"
+msgstr "Utilisateur modifié avec succès"
+
+#: ../src/CsnUser/Controller/AdminController.php:156
+msgid ""
+"Something went wrong during update user process! Please, try again later."
+msgstr ""
+"Une erreur est survenue durant la mise à jour du profil utilisateur. "
+"Veuillez réessayer plus tard !"
+
+#: ../src/CsnUser/Controller/AdminController.php:195
+msgid "User Deleted Successfully"
+msgstr "Utilisateur supprimé avec succès"
+
+#: ../src/CsnUser/Controller/AdminController.php:199
+#: ../src/CsnUser/Controller/AdminController.php:240
+msgid ""
+"Something went wrong during user delete process! Please, try again later."
+msgstr ""
+"Une erreur est survenue durant la suppression de l'utilisateur. Veuillez "
+"réessayer plus tard !"
+
+#: ../src/CsnUser/Controller/AdminController.php:226
+msgid "User ID or state invalid"
+msgstr "Identifiant ou état invalide"
+
+#: ../view/csn-user/layout/nav-menu.phtml:18
+msgid "User Home"
+msgstr "Profil"
+
+#: ../view/csn-user/layout/nav-menu.phtml:21
+#: ../view/csn-user/registration/edit-profile.phtml:54
+msgid "Edit Profile"
+msgstr "Éditer le profil"
+
+#: ../view/csn-user/layout/nav-menu.phtml:24
+#: ../view/csn-user/index/index.phtml:28
+msgid "Log Out"
+msgstr "Déconnexion"
+
+#: ../view/csn-user/layout/nav-menu.phtml:29
+msgid "Log in"
+msgstr "Connexion"
+
+#: ../view/csn-user/layout/nav-menu.phtml:32
+#: ../view/csn-user/registration/registration.phtml:78
+#: ../view/csn-user/registration/registration.phtml:89
+msgid "Sign Up"
+msgstr "Inscription"
+
+#: ../view/csn-user/layout/nav-menu.phtml:35
+#: ../view/csn-user/registration/reset-password.phtml:48
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#: ../view/csn-user/registration/confirm-email-success.phtml:21
+msgid "Thank you! Your registration has been confirmed."
+msgstr "Merci ! Votre inscription a été confirmée."
+
+#: ../view/csn-user/registration/registration.phtml:31
+#: ../view/csn-user/admin/edit-user-form.phtml:30
+#: ../view/csn-user/admin/new-user-form.phtml:30
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: ../view/csn-user/registration/registration.phtml:37
+#: ../view/csn-user/registration/edit-profile.phtml:32
+#: ../view/csn-user/admin/edit-user-form.phtml:36
+#: ../view/csn-user/admin/new-user-form.phtml:36
+msgid "First Name"
+msgstr "Prénom"
+
+#: ../view/csn-user/registration/registration.phtml:43
+#: ../view/csn-user/registration/edit-profile.phtml:38
+#: ../view/csn-user/admin/edit-user-form.phtml:42
+#: ../view/csn-user/admin/new-user-form.phtml:42
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: ../view/csn-user/registration/registration.phtml:48
+#: ../view/csn-user/registration/edit-profile.phtml:75
+#: ../view/csn-user/admin/edit-user-form.phtml:48
+#: ../view/csn-user/admin/new-user-form.phtml:48
+msgid "Your Email"
+msgstr "Votre mail"
+
+#: ../view/csn-user/registration/registration.phtml:53
+#: ../view/csn-user/index/login.phtml:36
+#: ../view/csn-user/admin/new-user-form.phtml:53
+msgid "Password"
+msgstr "Mot de passe"
+
+#: ../view/csn-user/registration/registration.phtml:58
+#: ../view/csn-user/admin/new-user-form.phtml:58
+msgid "Confirm Password"
+msgstr "Confirmation"
+
+#: ../view/csn-user/registration/registration.phtml:67
+#: ../view/csn-user/admin/edit-user-form.phtml:74
+#: ../view/csn-user/admin/new-user-form.phtml:84
+msgid "Type Your Answer"
+msgstr "Entrez votre réponse"
+
+#: ../view/csn-user/registration/registration.phtml:73
+#: ../view/csn-user/registration/reset-password.phtml:37
+#: ../view/csn-user/index/login.phtml:50
+msgid "Verify you are human"
+msgstr "Prouvez votre «humanité»"
+
+#: ../view/csn-user/registration/confirm-email-change-password.phtml:21
+#, php-format
+msgid ""
+"Confirmation successful! You have a new password. An email has been sent to "
+"<span class=\"zf-green\">%s</span> with your new password."
+msgstr ""
+"Confirmation réussie ! Vous avez un nouveau mot de passe. Un mail a été "
+"envoyé à <span class=\"zf-green\">%s</span> avec votre nouveau mot de passe."
+
+#: ../view/csn-user/registration/change-email-success.phtml:21
+msgid "Thank you! Your email has been changed to "
+msgstr "Merci ! Votre mail a été changé pour "
+
+#: ../view/csn-user/registration/password-change-success.phtml:21
+#, php-format
+msgid ""
+"An email has been sent to <span class=\"zf-green\">%s</span>. Please, check "
+"your inbox and confirm your request to change password!"
+msgstr ""
+"Un mail a été envoyé à <span class=\"zf-green\">%s</span>. Veuillez "
+"consulter votre messagerie et confirmer votre demande de changement de mot "
+"de passe !"
+
+#: ../view/csn-user/registration/change-security-question-success.phtml:21
+msgid "Thank you! Your security question has been changed"
+msgstr "Merci ! Votre question de sécurité a bien été modifiée."
+
+#: ../view/csn-user/registration/change-password-success.phtml:21
+msgid "Thank you! Your password has been changed successfully."
+msgstr "Merci ! Votre mot de passe a bien été modifié."
+
+#: ../view/csn-user/registration/change-password.phtml:31
+msgid "Confirm New Password"
+msgstr "Confirmez le nouveau mot de passe"
+
+#: ../view/csn-user/registration/change-password.phtml:36
+#: ../view/csn-user/registration/change-password.phtml:42
+#: ../view/csn-user/registration/edit-profile.phtml:71
+#: ../view/csn-user/admin/edit-user-form.phtml:121
+msgid "Change Password"
+msgstr "Changez le mot de passe"
+
+#: ../view/csn-user/registration/change-password.phtml:53
+msgid "Security Question"
+msgstr "Question de sécurité"
+
+#: ../view/csn-user/registration/change-password.phtml:57
+#: ../view/csn-user/registration/change-security-question.phtml:63
+msgid "Security Answer"
+msgstr "Réponse à la question de sécurité"
+
+#: ../view/csn-user/registration/change-password.phtml:62
+msgid "New Password"
+msgstr "Nouveau mot de passe"
+
+#: ../view/csn-user/registration/reset-password.phtml:31
+msgid "Write Your Username or Email"
+msgstr "Entrez votre identifiant et votre mot de passe"
+
+#: ../view/csn-user/registration/reset-password.phtml:42
+msgid "Send Reset Email"
+msgstr "Envoyez l'email de réinitialisation"
+
+#: ../view/csn-user/registration/change-security-question.phtml:36
+#: ../view/csn-user/registration/change-security-question.phtml:42
+#: ../view/csn-user/registration/edit-profile.phtml:87
+msgid "Change Security Question"
+msgstr "Changez la question de sécurité"
+
+#: ../view/csn-user/registration/change-security-question.phtml:52
+#: ../view/csn-user/registration/change-email.phtml:57
+msgid "Current Password"
+msgstr "Mot de passe actuel"
+
+#: ../view/csn-user/registration/change-email.phtml:31
+msgid "New Email"
+msgstr "Nouvelle adresse mail"
+
+#: ../view/csn-user/registration/change-email.phtml:36
+msgid "Confirm New Email"
+msgstr "Confirmez l'adresse"
+
+#: ../view/csn-user/registration/change-email.phtml:41
+#: ../view/csn-user/registration/change-email.phtml:47
+#: ../view/csn-user/registration/edit-profile.phtml:79
+msgid "Change Email"
+msgstr "Changez l'adresse mail"
+
+#: ../view/csn-user/registration/registration-success.phtml:21
+#, php-format
+msgid ""
+"An email has been sent to <span class=\"zf-green\">%s</span>. Please, check "
+"your inbox and confirm your registration!"
+msgstr ""
+"Un mail a été envoyé à <span class=\"zf-green\">%s</span>. Veuillez "
+"consulter votre messagerie et confirmer votre inscription !"
+
+#: ../view/csn-user/registration/edit-profile.phtml:48
+msgid "Update Profile"
+msgstr "Modifier le profil"
+
+#: ../view/csn-user/registration/edit-profile.phtml:65
+msgid "Your Username"
+msgstr "Votre identifiant"
+
+#: ../view/csn-user/registration/edit-profile.phtml:68
+msgid "Your Password"
+msgstr "Votre mot de passe"
+
+#: ../view/csn-user/registration/edit-profile.phtml:83
+msgid "Your Security Question"
+msgstr "Votre question de sécurité"
+
+#: ../view/csn-user/registration/edit-profile.phtml:91
+msgid "Your First/Last Name"
+msgstr "Vos prénom et nom de famille"
+
+#: ../view/csn-user/registration/edit-profile.phtml:109
+msgid "Your Language"
+msgstr "Votre langue"
+
+#: ../view/csn-user/index/login.phtml:31
+msgid "Username or Email"
+msgstr "Nom d'utilisateur ou mail"
+
+#: ../view/csn-user/index/login.phtml:40
+msgid "Activate Remember Me Function"
+msgstr "Activez la fonction « Se souvenir de moi »"
+
+#: ../view/csn-user/index/login.phtml:44
+msgid "Remember me?"
+msgstr "Se souvenir de moi ?"
+
+#: ../view/csn-user/index/login.phtml:55 ../view/csn-user/index/login.phtml:61
+msgid "Log In"
+msgstr "Se connecter"
+
+#: ../view/csn-user/index/login.phtml:105
+msgid "Sign up"
+msgstr "S'inscrire"
+
+#: ../view/csn-user/index/login.phtml:108
+msgid "Forgot your password?"
+msgstr "Mot de passe perdu ?"
+
+#: ../view/csn-user/index/index.phtml:22 ../view/csn-user/index/index.phtml:35
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: ../view/csn-user/index/index.phtml:32
+msgid "Congratulations! You have successfully logged in."
+msgstr "Félicitations ! Vous êtes correctement identifié."
+
+#: ../view/csn-user/index/index.phtml:35
+msgid "Guest"
+msgstr "Invité"
+
+#: ../view/csn-user/index/index.phtml:37
+msgid "Please follow the buttons at the top to navigate through the system."
+msgstr ""
+"Veuillez suivre les boutons ci-dessus pour naviguer au sein du système."
+
+#: ../view/csn-user/admin/edit-user-form.phtml:79
+#: ../view/csn-user/admin/edit-user-form.phtml:86
+msgid "Edit User"
+msgstr "Éditer l'utilisateur"
+
+#: ../view/csn-user/admin/new-user-form.phtml:89
+#: ../view/csn-user/admin/index.phtml:37
+msgid "Create User"
+msgstr "Créer un utilisateur"
+
+#: ../view/csn-user/admin/new-user-form.phtml:96
+msgid "New User"
+msgstr "Nouvel utilisateur"
+
+#: ../view/csn-user/admin/index.phtml:34
+msgid "Users Admin Table"
+msgstr "Tableau d'administration des utilisateurs"
+
+#: ../view/csn-user/admin/index.phtml:45
+msgid "Name"
+msgstr "Nom"
+
+#: ../view/csn-user/admin/index.phtml:46
+msgid "Email"
+msgstr "Mail"
+
+#: ../view/csn-user/admin/index.phtml:47
+msgid "State"
+msgstr "État"
+
+#: ../view/csn-user/admin/index.phtml:48
+msgid "Actions"
+msgstr "Actions"
+
+#: ../view/csn-user/admin/index.phtml:68
+msgid "Enable"
+msgstr "Activer"
+
+#: ../view/csn-user/admin/index.phtml:71
+msgid "Edit"
+msgstr "Éditer"
+
+#: ../view/csn-user/admin/index.phtml:73
+msgid "Do you really want to delete this user?"
+msgstr "Voulez-vous réellement supprimer cet utilisateur ?"
+
+#: ../view/csn-user/admin/index.phtml:74
+msgid "Delete"
+msgstr "Supprimer"
