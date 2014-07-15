@@ -28,33 +28,37 @@ $form->setAttributes(array(
 
 $form->get('usernameOrEmail')->setAttributes(array(
     'class' => 'form-control input-lg', 
-    'placeholder' => $this->translate('Username or Email')
+    'placeholder' => $this->translate('Username or Email', 'csnuser')
 ));
 
 $form->get('password')->setAttributes(array(
     'class' => 'form-control input-lg', 
-    'placeholder' => $this->translate('Password')
+    'placeholder' => $this->translate('Password', 'csnuser')
 ));
 
 $form->get('rememberme')->setAttributes(array(
-    //'class' => 'form-control input-lg', 
+    'title' => $this->translate('Activate Remember Me Function', 'csnuser'), 
 ));
+
+$form->get('rememberme')->setOptions(array(
+    'label' => $this->translate('Remember me?', 'csnuser'),
+));        
 
 $form->get('captcha')->setAttributes(array(
     'required' => 'true',
     'class' => 'form-control input-lg',
-    'placeholder' => $this->translate('Verify you are human')
+    'placeholder' => $this->translate('Verify you are human', 'csnuser')
 ));
 
 $form->get('submit')->setAttributes(array(
     'class' => 'btn btn btn-success btn-lg', 
-    'value' => $this->translate('Log In')
+    'value' => $this->translate('Log In', 'csnuser')
 ));
 
 $form->prepare();
 ?>
 <div class="jumbotron">
-  <h2><?php echo $this->translate('Log In')?></h2>
+  <h2><?php echo $this->translate('Log In', 'csnuser')?></h2>
     <div class="container" id="wrap">
 	  <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -98,10 +102,10 @@ $form->prepare();
             <div class="row">
               <div class="col-sm-12"> 
 	            <a href="<?php echo $this->url('user-register', array('action' => 'index'));?>">
-	              <?php echo $this->translate('Sign up'); ?>
+	              <?php echo $this->translate('Sign up', 'csnuser'); ?>
 	            </a> |  
 	            <a href="<?php echo $this->url('user-register', array('action' => 'reset-password'));?>">
-	              <?php echo $this->translate('Forgot your password?'); ?>
+	              <?php echo $this->translate('Forgot your password?', 'csnuser'); ?>
 	            </a>
               </div>
             </div>

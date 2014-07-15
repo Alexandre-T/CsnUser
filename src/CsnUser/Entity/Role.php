@@ -16,13 +16,12 @@ namespace CsnUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
- * Role
+ * Doctrine ORM implementation of Role entity
  *
- * @ORM\Table(name="role")
  * @ORM\Entity
+ * @ORM\Table(name="`role`")
  */
 class Role
 {
@@ -31,30 +30,38 @@ class Role
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=15, nullable=false)
+     * @ORM\Column(name="name", type="string", length=30, nullable=false, unique=true)
      */
     protected $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=100, nullable=false)
+     */
+    protected $roleDescription;
 
     /**
-     * @var Array
-     * 
-     * @ORM\ManyToMany(targetEntity="Role", cascade={"persist"})
-     * @ORM\JoinTable(name="roles_parents",
-     *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="parent_id", referencedColumnName="id")}
-     *      )
+     * @var Privilege
+     * @ORM\OneToMany(targetEntity="CsnAuthorization\Entity\Privilege", mappedBy="role", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $parents;
+    protected $privilege;
     
+    /**
+     * Construct
+     * 
+     * Construct some referenced columns arrays
+     */
     public function __construct()
     {
-        $this->parents = new ArrayCollection;
+        $this->privilege = new ArrayCollection;
     }
     
     /**
@@ -91,26 +98,48 @@ class Role
     }
     
     /**
-     * Set parents
+     * Set role description
      *
-     * @param  Array $parent
+     * @param  string $roleDescription
      * @return Role
      */
-    public function setParents($parents)
+    public function setRoleDescription($roleDescription)
     {
-        $this->parents = $parents;
+        $this->roleDescription = $roleDescription;
+    
+        return $this;
+    }
+    
+    /**
+     * Get role description
+     *
+     * @return string
+     */
+    public function getRoleDescription()
+    {
+        return $this->roleDescription;
+    }
+    
+    /**
+     * Set privilege
+     *
+     * @param  $privilege
+     * @return Role
+     */
+    public function setPrivilege($privilege)
+    {
+        $this->privilege = $privilege;
 
         return $this;
     }
-
+    
     /**
-     * Get parents
+     * Get privilege
      *
      * @return Array
      */
-    public function getParents()
+    public function getPrivilege()
     {
-        return $this->parents;
+        return $this->privilege;
     }
-
 }

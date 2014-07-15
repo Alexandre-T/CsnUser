@@ -15,24 +15,24 @@
 if($this->navMenu == true){
   if($this->user) { ?> 
     <a href="<?php echo $this->url('user-index');?>" class="btn btn-success">
-      <?php echo $this->translate('User Home'); ?>
+      <?php echo $this->translate('User Home', 'csnuser'); ?>
     </a>
 	<a href="<?php echo $this->url('user-register', array('action' => 'edit-profile'));?>" class="btn btn-success">
-	  <?php echo $this->translate('Edit Profile'); ?>
+	  <?php echo $this->translate('Edit Profile', 'csnuser'); ?>
 	</a> 
 	<a href="<?php echo $this->url('user-index', array('action' => 'logout'))?>" class="btn btn-success">
-	  <?php echo $this->translate('Log Out'); ?>
+	  <?php echo $this->translate('Log Out', 'csnuser'); ?>
 	</a>
 <?php
   } else { ?>
 	<a href="<?php echo $this->url('user-index', array('action' => 'login'))?>" class="btn btn-success">
-	  <?php echo $this->translate('Log in'); ?>
+	  <?php echo $this->translate('Log in', 'csnuser'); ?>
 	</a>
 	<a href="<?php echo $this->url('user-register');?>" class="btn btn-success">
-	  <?php echo $this->translate('Sign Up'); ?>
+	  <?php echo $this->translate('Sign Up', 'csnuser'); ?>
 	</a>
 	<a href="<?php echo $this->url('user-register', array('action' => 'reset-password'));?>" class="btn btn-success">
-	  <?php echo $this->translate('Reset Password'); ?>
+	  <?php echo $this->translate('Reset Password', 'csnuser'); ?>
 	</a>
 <?php } ?>
 <?php } ?>

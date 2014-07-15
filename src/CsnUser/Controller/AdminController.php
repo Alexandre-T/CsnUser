@@ -56,7 +56,7 @@ class AdminController extends AbstractActionController
     public function indexAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         $users = $this->getEntityManager()->getRepository('CsnUser\Entity\User')->findall();
@@ -64,7 +64,7 @@ class AdminController extends AbstractActionController
     }    
     
     /**
-     * Create action
+     * Create user action
      *
      * Method to create an user
      *
@@ -73,17 +73,16 @@ class AdminController extends AbstractActionController
     public function createUserAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         try {
             $user = new User;
             
             $form = $this->getUserFormHelper()->createUserForm($user, 'CreateUser');
-            $request = $this->getRequest();
-            if ($request->isPost()) {
+            if ($this->getRequest()->isPost()) {
                 $form->setValidationGroup('username', 'email', 'firstName', 'lastName', 'password', 'passwordVerify', 'language', 'state', 'role', 'question', 'answer', 'csrf');
-                $form->setData($request->getPost());
+                $form->setData($this->getRequest()->getPost());
                 if ($form->isValid()) {
                     $entityManager = $this->getEntityManager();
                     $user->setEmailConfirmed(false);
@@ -92,14 +91,14 @@ class AdminController extends AbstractActionController
                     $user->setPassword(UserCredentialsService::encryptPassword($user->getPassword()));
                     $entityManager->persist($user);
                     $entityManager->flush();
-                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User created Successfully'));
+                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User created Successfully', 'csnuser'));
                     return $this->redirect()->toRoute('user-admin');                                        
                 }
             }        
         }
         catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during user creation! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during user creation! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 false
@@ -112,7 +111,7 @@ class AdminController extends AbstractActionController
     }
 
     /**
-     * Edit action
+     * Edit user action
      *
      * Method to update an user
      *
@@ -121,14 +120,14 @@ class AdminController extends AbstractActionController
     public function editUserAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         try {
             $id = (int) $this->params()->fromRoute('id', 0);
     
             if ($id == 0) {
-                $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid'));
+                $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid', 'csnuser'));
                 return $this->redirect()->toRoute('user-admin');
             }
             
@@ -140,22 +139,21 @@ class AdminController extends AbstractActionController
             $form->setAttributes(array(
                 'action' => $this->url()->fromRoute('user-admin', array('action' => 'edit-user', 'id' => $id)),
             ));
-              	
-            $request = $this->getRequest();
-            if ($request->isPost()) {
+
+            if ($this->getRequest()->isPost()) {
                 $form->setValidationGroup('username', 'email', 'firstName', 'lastName', 'language', 'state', 'role', 'question', 'answer', 'csrf');
-                $form->setData($request->getPost());
+                $form->setData($this->getRequest()->getPost());
                 if ($form->isValid()) {
                     $entityManager->persist($user);
                     $entityManager->flush();
-                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully'));
+                    $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully', 'csnuser'));
                     return $this->redirect()->toRoute('user-admin');
                 }
             }  
         }      
         catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during update user process! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during update user process! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 false
@@ -164,14 +162,13 @@ class AdminController extends AbstractActionController
         
         $viewModel = new ViewModel(array(
             'form' => $form,
-            'headerLabel' => $this->getTranslatorHelper()->translate('Edit User').' - '.$user->getDisplayName(),
         ));
         $viewModel->setTemplate('csn-user/admin/edit-user-form');
         return $viewModel;
     }
 
     /**
-     * Delete action
+     * Delete user action
      *
      * Method to delete an user from his ID
      *
@@ -180,13 +177,13 @@ class AdminController extends AbstractActionController
     public function deleteUserAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         $id = (int) $this->params()->fromRoute('id', 0);
 
         if ($id == 0) {
-            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid'));
+            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID invalid', 'csnuser'));
             return $this->redirect()->toRoute('user-admin');
         }
            
@@ -195,11 +192,11 @@ class AdminController extends AbstractActionController
             $user = $entityManager->getRepository('CsnUser\Entity\User')->find($id);
             $entityManager->remove($user);
             $entityManager->flush();
-            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Deleted Successfully'));
+            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Deleted Successfully', 'csnuser'));
         }
         catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 false
@@ -210,7 +207,7 @@ class AdminController extends AbstractActionController
     }
     
     /**
-     * Disable action
+     * Disable user action
      *
      * Method to disable an user from his ID
      *
@@ -219,14 +216,14 @@ class AdminController extends AbstractActionController
     public function setUserStateAction()
     {
         if(!$this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
       
         $id = (int) $this->params()->fromRoute('id', 0);
         $state = (int) $this->params()->fromRoute('state', -1);
         
         if ($id === 0 || $state === -1) {
-            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID or state invalid'));
+            $this->flashMessenger()->addErrorMessage($this->getTranslatorHelper()->translate('User ID or state invalid', 'csnuser'));
             return $this->redirect()->toRoute('user-admin');
         }
          
@@ -236,11 +233,11 @@ class AdminController extends AbstractActionController
             $user->setState($entityManager->find('CsnUser\Entity\State', $state));
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully'));
+            $this->flashMessenger()->addSuccessMessage($this->getTranslatorHelper()->translate('User Updated Successfully', 'csnuser'));
         }
         catch (\Exception $e) {
           return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-              $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.'),
+              $this->getTranslatorHelper()->translate('Something went wrong during user delete process! Please, try again later.', 'csnuser'),
               $e,
               $this->getOptions()->getDisplayExceptions(),
               false

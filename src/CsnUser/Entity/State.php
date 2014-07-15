@@ -17,10 +17,10 @@ namespace CsnUser\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * State
+ * Doctrine ORM implementation of State entity
  *
- * @ORM\Table(name="state")
  * @ORM\Entity
+ * @ORM\Table(name="`state`")
  */
 class State
 {

@@ -16,8 +16,6 @@ namespace CsnUser\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Zend\Session\SessionManager;
-use Zend\Session\Config\StandardConfig;
 
 use CsnUser\Entity\User;
 use CsnUser\Options\ModuleOptions;
@@ -69,13 +67,13 @@ class IndexController extends AbstractActionController
     public function loginAction()
     {
         if ($user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $user = new User;
         $form = $this->getUserFormHelper()->createUserForm($user, 'login');
         $messages = null;
-        if ($this->getRequest()->isPost()) {
+        if($this->getRequest()->isPost()) {
             $form->setValidationGroup('usernameOrEmail', 'password', 'rememberme', 'csrf', 'captcha');
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
@@ -91,7 +89,7 @@ class IndexController extends AbstractActionController
                     if(!isset($user)) {
                         $message = 'The username or email is not valid!';
                         return new ViewModel(array(
-                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid', 'csnuser'),
                             'form'	=> $form,
                             'messages' => $messages,
                             'navMenu' => $this->getOptions()->getNavMenu()
@@ -99,9 +97,9 @@ class IndexController extends AbstractActionController
                     }
                     
                     if($user->getState()->getId() < 2) {
-                        $messages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.');
+                        $messages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.', 'csnuser');
                         return new ViewModel(array(
-                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+                            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid', 'csnuser'),
                             'form'	=> $form,
                             'messages' => $messages,
                             'navMenu' => $this->getOptions()->getNavMenu()
@@ -117,12 +115,19 @@ class IndexController extends AbstractActionController
                         $authService->getStorage()->write($identity);
                         
                         if ($this->params()->fromPost('rememberme')) {
-                            $time = 1209600; // 14 days (1209600/3600 = 336 hours => 336/24 = 14 days)
-                            $sessionManager = new SessionManager();
-                            $sessionManager->rememberMe($time);
+                            $useCookies = true;
+                            $cookieLifeTime = 14 * 24 * 60 * 60;
+                        } else {
+                            $useCookies = false;
+                            $cookieLifeTime = 0;
                         }
-
-                        return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+                        $sessionManager = $this->getServiceLocator()->get('Zend\Session\SessionManager');
+                        $sessionManager->getConfig()->setUseCookies($useCookies);
+                        $sessionManager->getConfig()->setCookieHttpOnly(true);
+                        $sessionManager->getConfig()->setRememberMeSeconds(60 * $this->getOptions()->getSessionLifeTime());
+                        $sessionManager->rememberMe($cookieLifeTime);
+                        
+                        return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
                     }
                     
                     foreach ($authResult->getMessages() as $message) {
@@ -130,7 +135,7 @@ class IndexController extends AbstractActionController
                     }
                 } catch (\Exception $e) {
                     return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                        $this->getTranslatorHelper()->translate('Something went wrong during login! Please, try again later.'),
+                        $this->getTranslatorHelper()->translate('Something went wrong during login! Please, try again later.', 'csnuser'),
                         $e,
                         $this->getOptions()->getDisplayExceptions(),
                         $this->getOptions()->getNavMenu()
@@ -140,7 +145,7 @@ class IndexController extends AbstractActionController
         }
         
         return new ViewModel(array(
-            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid'),
+            'error' => $this->getTranslatorHelper()->translate('Your authentication credentials are not valid', 'csnuser'),
             'form'	=> $form,
             'messages' => $messages,
             'navMenu' => $this->getOptions()->getNavMenu()
@@ -156,14 +161,18 @@ class IndexController extends AbstractActionController
      */
     public function logoutAction()
     {
+        if (!$user = $this->identity()) {
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
+        }
+        
         $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if ($auth->hasIdentity()) {
             $auth->clearIdentity();
-            $sessionManager = new SessionManager();
+            $sessionManager = $this->getServiceLocator()->get('Zend\Session\SessionManager');
             $sessionManager->forgetMe();
         }
 
-        return $this->redirect()->toRoute($this->getOptions()->getLogoutRedirectRoute());
+        return $this->redirect()->toRoute($this->getOptions()->getLogoutRedirectRoute(), $this->getOptions()->getLogoutRedirectRouteOptions());
     }
 
     /**

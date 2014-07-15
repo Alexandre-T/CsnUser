@@ -14,11 +14,10 @@
 
 namespace CsnUser\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Zend\Form\Annotation;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Doctrine ORM implementation of User entity
@@ -34,7 +33,7 @@ class User
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @Annotation\Exclude()
@@ -124,7 +123,7 @@ class User
      * @Annotation\Required(true)
      * @Annotation\Options({
      *   "required":"true",
-     *   "empty_option": "User Role",
+     *   "empty_option": "Select User Role",
      *   "target_class":"CsnUser\Entity\Role",
      *   "property": "name"
      * })
@@ -237,12 +236,13 @@ class User
     protected $emailConfirmed;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @ORM\ManyToMany(targetEntity="CsnUser\Entity\User", mappedBy="myFriends")
+     * @Annotation\Exclude()
      **/
     protected $friendsWithMe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+     * @ORM\ManyToMany(targetEntity="CsnUser\Entity\User", inversedBy="friendsWithMe")
      * @ORM\JoinTable(name="friends",
      *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="friend_id", referencedColumnName="id")}

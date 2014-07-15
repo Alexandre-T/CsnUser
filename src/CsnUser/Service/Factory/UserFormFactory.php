@@ -52,7 +52,7 @@ class UserFormFactory implements FactoryInterface
     protected $translatorHelper;
     
     /**
-     * @var Zend\Mvc\I18n\Translator
+     * @var Zend\Mvc\Controller\Plugin\Url
      */
     protected $url;
     
@@ -142,7 +142,7 @@ class UserFormFactory implements FactoryInterface
               
           case 'EditUser':
               $this->form->setAttributes(array(
-                  'name' => 'register'
+                  'name' => 'edit-user'
               ));
               break;
               
@@ -173,7 +173,7 @@ class UserFormFactory implements FactoryInterface
             'type' => 'Zend\Form\Element\Csrf',
             'options' => array(
                 'csrf_options' => array(
-                    'timeout' => 600
+                    'timeout' => 600,
                 )
             )
         ));
@@ -216,7 +216,9 @@ class UserFormFactory implements FactoryInterface
             'name' => 'rememberme',
             'type' => 'Zend\Form\Element\Checkbox',
             'options' => array(
-                'label' => $this->getTranslatorHelper()->translate('Remember me?'),
+                'use_hidden_element' => true,
+                'checked_value' => '1',
+                'unchecked_value' => '0'
             ),            
         ));
     }
@@ -245,7 +247,7 @@ class UserFormFactory implements FactoryInterface
                 'onclick' => 'window.location="'.$this->getUrlPlugin()->fromRoute('user-index', array('action' => 'login')).'"',
             ),
             'options' => array(
-                'label' => $this->getTranslatorHelper()->translate('Sign In'),
+                'label' => $this->getTranslatorHelper()->translate('Sign In', 'csnuser'),
             )
         ));
     }
@@ -352,10 +354,10 @@ class UserFormFactory implements FactoryInterface
             ),
             'validators' => array(
                 array(
-                    'name' => 'InArray',
+                    'name' => 'Regex',
                     'options' => array(
-                        'haystack' => array('0', '1'),
-                     ),
+                        'pattern' => '/^[0-1]{1}$/',
+                    ),
                 ),
             )
         )));
@@ -374,7 +376,7 @@ class UserFormFactory implements FactoryInterface
                 'object_repository' => $entityManager->getRepository('CsnUser\Entity\User'),
                 'fields'            => array('username'),
                 'messages' => array(
-                    'objectFound' => $this->getTranslatorHelper()->translate('This username is already taken'),
+                    'objectFound' => $this->getTranslatorHelper()->translate('This username is already taken', 'csnuser'),
                 ),
             ))
         );
@@ -384,7 +386,7 @@ class UserFormFactory implements FactoryInterface
                 'object_repository' => $entityManager->getRepository('CsnUser\Entity\User'),
                 'fields'            => array('email'),
                 'messages' => array(
-                    'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists'),
+                    'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists', 'csnuser'),
                 ),
             ))
         );
@@ -463,7 +465,7 @@ class UserFormFactory implements FactoryInterface
                         'object_repository' => $this->getEntityManager()->getRepository('CsnUser\Entity\User'),
                         'fields' => array('email'),
                         'messages' => array(
-                            'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists'),
+                            'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists', 'csnuser'),
                         ),
                     ),
                 ),

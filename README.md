@@ -53,6 +53,10 @@ CsnUser requires setting up a Connection for Doctrine, a simple Mail configurati
 
 5. Append the contents of `./vendor/coolcsn/CsnUser/data/CsnUser.css` to APP_ROOT/public/css/styles.css or include `CsnUser.css` into your app.
 
+Default User
+------------
+CsnUser by default provides you with an admin user for you to test. Login with this user using `administrator` as the username and `superadmin` as the password.
+
 Options
 -------
 
@@ -78,6 +82,19 @@ The following options are available:
 >### It is ready? ###
 Navigate to *[hostname]/user* in your browser to view different options for login, registration, forgotten password, etc.
 
+Enable module translations
+--------------------------
+If you wish to enable module translations, you need to add this array to `translation_file_patterns` key in your `translator` key in Zend Skeleton Application **Application** module config `module.config.php` file. After that, you may proceed to create your own translation files that are located in `CsnUser/language`
+
+```
+array(
+    'type'     => 'gettext',
+    'base_dir' => __DIR__ . '/../../CsnUser/language',
+    'pattern'  => '%s.mo',
+    'text_domain' => 'csnuser',
+)
+```
+
 Routes
 ------------
 The following routes are available:
@@ -85,7 +102,7 @@ The following routes are available:
 - **user** Welcome view.
 - **user/login** User login view.
 - **user/register** User register view.
-- **user/register/reset-password** User resep password view.
+- **user/register/reset-password** User reset password view.
 - **user/register/edit-profile** User edit profile view.
 - **user/register/change-password** User change password view.
 - **user/register/change-email** User change email view.
@@ -110,4 +127,7 @@ Recommends
  
 - [coolcsn/CsnCms](https://github.com/coolcsn/CsnCms) - Content management system;
 
+Known Issues
+------------
+- **ZendDeveloperTools:** Enabling *ZendDeveloperTools* module makes Doctrine ORM Annotation Builder fail. You can enable *ZendDeveloperTools*, but for annotated form creation test, you need to disable it first or annotated forms will not render at all.
 

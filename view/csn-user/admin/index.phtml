@@ -31,10 +31,10 @@ $flashMessenger = $this->flashMessenger()
  <?php echo $flashMessenger->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
 </div>
 <h1>
-  <?php echo $this->translate('Users Admin Table') ?>
+  <?php echo $this->translate('Users Admin Table', 'csnuser') ?>
 </h1>
 <a class="btn btn-success" href="<?php echo $this->url('user-admin', array('action' => 'create-user')); ?>">
-  <?php echo $this->translate('Create User') ?>
+  <?php echo $this->translate('Create User', 'csnuser') ?>
 </a>
 <hr />
 <div class="table-responsive">
@@ -42,10 +42,10 @@ $flashMessenger = $this->flashMessenger()
     <thead>
       <tr>
         <th>Id</th>
-          <th><?php echo $this->translate('Name') ?></th>
-          <th><?php echo $this->translate('Email') ?></th>
-          <th><?php echo $this->translate('State') ?></th>
-          <th><?php echo $this->translate('Actions') ?></th>
+          <th><?php echo $this->translate('Name', 'csnuser') ?></th>
+          <th><?php echo $this->translate('Email', 'csnuser') ?></th>
+          <th><?php echo $this->translate('State', 'csnuser') ?></th>
+          <th><?php echo $this->translate('Actions', 'csnuser') ?></th>
         </tr>
       </thead>
       <?php
@@ -53,25 +53,25 @@ $flashMessenger = $this->flashMessenger()
       ?>
       <tr>
         <td><?php  echo $user->getId(); ?></td>
-        <td>
+        <td class="name-column">
           <a class="name" href="<?php echo $this->url('user-admin', array('action' => 'edit-user', 'id' => $user->getId())); ?>">
             <?php echo $user->getFirstName() . ' ' . $user->getLastName() ?>
           </a>
           <span class="subtext">(<?php echo $user->getRole()->getName()?>)</span>
         </td>
-        <td><?php  echo $user->getEmail(); ?></td>
+        <td class="email-column"><?php  echo $user->getEmail(); ?></td>
         <td>
-          <?php echo $this->translate($user->getState()->getState()) ?>
+          <?php echo $this->translate($user->getState()->getState(), 'csnuser') ?>
         </td> 
         <td class="delete-cell">
           <a href="<?php echo $this->url('user-admin', array('action'=>'set-user-state', 'id' => $user->getId(), 'state' => ($user->getState()->getId() == 1) ? 2 : 1)) ?>">
-            <?php echo $this->translate(($user->getState()->getId() == 1) ? 'Enable' : 'Disable') ?>
+            <?php echo $this->translate(($user->getState()->getId() == 1) ? 'Enable' : 'Disable', 'csnuser') ?>
           </a> | 
           <a href="<?php echo $this->url('user-admin', array('action'=>'edit-user', 'id' => $user->getId()));?>">
-            <?php echo $this->translate('Edit') ?>
+            <?php echo $this->translate('Edit', 'csnuser') ?>
           </a> | 
-          <a href="<?php echo $this->url('user-admin', array('action'=>'delete-user', 'id' => $user->getId()));?>" onclick="return confirm('<?php echo $this->translate('Do you really want to delete this user?') ?>')">
-            <?php echo $this->translate('Delete') ?>
+          <a href="<?php echo $this->url('user-admin', array('action'=>'delete-user', 'id' => $user->getId()));?>" onclick="return confirm('<?php echo $this->translate('Do you really want to delete this user?', 'csnuser') ?>')">
+            <?php echo $this->translate('Delete', 'csnuser') ?>
           </a>
         </td>
       </tr>

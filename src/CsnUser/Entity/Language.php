@@ -17,10 +17,10 @@ namespace CsnUser\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Language
+ * Doctrine ORM implementation of Language entity
  *
- * @ORM\Table(name="language")
  * @ORM\Entity
+ * @ORM\Table(name="`language`")
  */
 class Language
 {

@@ -58,7 +58,7 @@ class RegistrationController extends AbstractActionController
     public function indexAction()
     {
         if($this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $user = new User;
@@ -80,8 +80,8 @@ class RegistrationController extends AbstractActionController
     		        $fullLink = $this->getBaseUrl() . $this->url()->fromRoute('user-register', array('action' => 'confirm-email', 'id' => $user->getRegistrationToken()));
     		        $this->sendEmail(
     		            $user->getEmail(),
-    		            $this->getTranslatorHelper()->translate('Please, confirm your registration!'),
-    		            sprintf($this->getTranslatorHelper()->translate('Please, click the link to confirm your registration => %s'), $fullLink)
+    		            $this->getTranslatorHelper()->translate('Please, confirm your registration!', 'csnuser'),
+    		            sprintf($this->getTranslatorHelper()->translate('Please, click the link to confirm your registration => %s', 'csnuser'), $fullLink)
     		        );
     		        $entityManager->persist($user);
                     $entityManager->flush();
@@ -94,7 +94,7 @@ class RegistrationController extends AbstractActionController
                     return $viewModel;
     		    } catch (\Exception $e) {
                     return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-    				    $this->getTranslatorHelper()->translate('Something went wrong when trying to send activation email! Please, try again later.'),
+    				    $this->getTranslatorHelper()->translate('Something went wrong when trying to send activation email! Please, try again later.', 'csnuser'),
     					$e,
     					$this->getOptions()->getDisplayExceptions(),
     					$this->getOptions()->getNavMenu()
@@ -121,7 +121,7 @@ class RegistrationController extends AbstractActionController
     public function editProfileAction()
     {
         if(!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $form = $this->getUserFormHelper()->createUserForm($user, 'EditProfile');
@@ -141,7 +141,7 @@ class RegistrationController extends AbstractActionController
                 $entityManager = $this->getEntityManager();
                 $entityManager->persist($user);
                 $entityManager->flush();    
-                $message =  $this->getTranslatorHelper()->translate('Your profile has been edited');
+                $message =  $this->getTranslatorHelper()->translate('Your profile has been edited', 'csnuser');
             }
         }
     
@@ -165,7 +165,7 @@ class RegistrationController extends AbstractActionController
     public function changePasswordAction()
     {
         if(!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
     
         $form = $this->getUserFormHelper()->createUserForm($user, 'ChangePassword');
@@ -187,7 +187,7 @@ class RegistrationController extends AbstractActionController
                     $viewModel->setTemplate('csn-user/registration/change-password-success');
                     return $viewModel;
                 } else {
-                    $message = $this->getTranslatorHelper()->translate('Your answer is wrong. Please provide the correct answer.');
+                    $message = $this->getTranslatorHelper()->translate('Your answer is wrong. Please provide the correct answer.', 'csnuser');
                 }
             }
         }
@@ -205,7 +205,7 @@ class RegistrationController extends AbstractActionController
     public function resetPasswordAction()
     {
         if($user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
     
         $user = new User;
@@ -227,8 +227,8 @@ class RegistrationController extends AbstractActionController
                         $fullLink = $this->getBaseUrl() . $this->url()->fromRoute('user-register', array( 'action' => 'confirm-email-change-password', 'id' => $user->getRegistrationToken()));
                         $this->sendEmail(
                                 $user->getEmail(),
-                                $this->getTranslatorHelper()->translate('Please, confirm your request to change password!'),
-                                sprintf($this->getTranslatorHelper()->translate('Hi, %s. Please, follow this link %s to confirm your request to change password.'), $user->getUsername(), $fullLink)
+                                $this->getTranslatorHelper()->translate('Please, confirm your request to change password!', 'csnuser'),
+                                sprintf($this->getTranslatorHelper()->translate('Hi, %s. Please, follow this link %s to confirm your request to change password.', 'csnuser'), $user->getUsername(), $fullLink)
                         );
                         $entityManager->persist($user);
                         $entityManager->flush();
@@ -242,7 +242,7 @@ class RegistrationController extends AbstractActionController
                         return $viewModel;
                     } catch (\Exception $e) {
                         return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                                $this->getTranslatorHelper()->translate('Something went wrong when trying to send activation email! Please, try again later.'),
+                                $this->getTranslatorHelper()->translate('Something went wrong when trying to send activation email! Please, try again later.', 'csnuser'),
                                 $e,
                                 $this->getOptions()->getDisplayExceptions(),
                                 $this->getOptions()->getNavMenu()
@@ -267,7 +267,7 @@ class RegistrationController extends AbstractActionController
     public function changeEmailAction()
     {
         if(!$user = $this->identity()) {
-            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+            return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
 
         $form = $this->getUserFormHelper()->createUserForm($user, 'ChangeEmail');
@@ -293,7 +293,7 @@ class RegistrationController extends AbstractActionController
                     $viewModel->setTemplate('csn-user/registration/change-email-success');
                     return $viewModel;
                 } else {
-                    $message = $this->getTranslatorHelper()->translate('Your current password is not correct.');
+                    $message = $this->getTranslatorHelper()->translate('Your current password is not correct.', 'csnuser');
                 }
             }
         }
@@ -311,7 +311,7 @@ class RegistrationController extends AbstractActionController
     public function changeSecurityQuestionAction()
     {
         if(!$user = $this->identity()) {
-          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+          return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute(), $this->getOptions()->getLoginRedirectRouteOptions());
         }
         
         $form = $this->getUserFormHelper()->createUserForm($user, 'ChangeSecurityQuestion');
@@ -333,7 +333,7 @@ class RegistrationController extends AbstractActionController
               $viewModel->setTemplate('csn-user/registration/change-security-question-success');
               return $viewModel;
             } else {
-              $message = $this->getTranslatorHelper()->translate('Your password is wrong. Please provide the correct password.');
+              $message = $this->getTranslatorHelper()->translate('Your password is wrong. Please provide the correct password.', 'csnuser');
             }
           }
         }
@@ -370,7 +370,7 @@ class RegistrationController extends AbstractActionController
             }
         } catch (\Exception $e) {
             return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-                $this->getTranslatorHelper()->translate('Something went wrong during the activation of your account! Please, try again later.'),
+                $this->getTranslatorHelper()->translate('Something went wrong during the activation of your account! Please, try again later.', 'csnuser'),
                 $e,
                 $this->getOptions()->getDisplayExceptions(),
                 $this->getOptions()->getNavMenu()
@@ -399,7 +399,7 @@ class RegistrationController extends AbstractActionController
           $this->sendEmail(
               $user->getEmail(),
               'Your password has been changed!',
-              sprintf($this->getTranslatorHelper()->translate('Hello again %s. Your new password is: %s. Please, follow this link %s to log in with your new password.'), $user->getUsername(), $password, $fullLink)
+              sprintf($this->getTranslatorHelper()->translate('Hello again %s. Your new password is: %s. Please, follow this link %s to log in with your new password.', 'csnuser'), $user->getUsername(), $password, $fullLink)
               
           );          
           $entityManager->persist($user);
@@ -415,7 +415,7 @@ class RegistrationController extends AbstractActionController
         }
       } catch (\Exception $e) {
         return $this->getServiceLocator()->get('csnuser_error_view')->createErrorView(
-            $this->getTranslatorHelper()->translate('An error occured during the confirmation of your password change! Please, try again later.'),
+            $this->getTranslatorHelper()->translate('An error occured during the confirmation of your password change! Please, try again later.', 'csnuser'),
             $e,
             $this->getOptions()->getDisplayExceptions(),
             $this->getOptions()->getNavMenu()
