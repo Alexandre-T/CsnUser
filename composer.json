@@ -38,9 +38,9 @@
             "role":      "Developer"
         },
         {
-            "name": "Alexandre Tranchant",
-            "email": "alexandre.tranchant@gmail.com",
-            "role": "French Translation"
+            "name":      "Alexandre Tranchant",
+            "email":     "alexandre.tranchant@gmail.com",
+            "role":      "French Translation"
         }
     ],
     "minimum-stability": "dev",
