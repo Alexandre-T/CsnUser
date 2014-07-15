@@ -36,6 +36,11 @@
             "name":      "Martin Briglia",
             "email":     "martin@mgscreativa.com",
             "role":      "Developer"
+        },
+        {
+            "name": "Alexandre Tranchant",
+            "email": "alexandre.tranchant@gmail.com",
+            "role": "French Translation"
         }
     ],
     "minimum-stability": "dev",
